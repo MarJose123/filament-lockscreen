@@ -7,6 +7,8 @@ use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
+use Livewire\Livewire;
+use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use Spatie\LaravelPackageTools\Package;
 
@@ -22,6 +24,7 @@ class FilamentLockscreenServiceProvider extends PluginServiceProvider
         $package
             ->name('filament-lockscreen')
             ->hasConfigFile()
+            ->hasViews()
             ->hasRoute('web')
             ;
     }
@@ -46,5 +49,7 @@ class FilamentLockscreenServiceProvider extends PluginServiceProvider
                     ->icon('heroicon-s-lock-closed'),
             ]);
         });
+
+        Livewire::component('LockerScreen', LockerScreen::class);
     }
 }

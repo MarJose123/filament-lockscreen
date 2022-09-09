@@ -20,6 +20,7 @@
         "php": "^8.1",
         "filament/filament": "^2.0",
         "illuminate/contracts": "^9.0",
+        "phpsa/filament-password-reveal": "^1.1",
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
