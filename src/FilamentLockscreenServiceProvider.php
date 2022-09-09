@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace filament-lockscreen\FilamentLockscreen;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use filament-lockscreen\FilamentLockscreen\Commands\FilamentLockscreenCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentLockscreenServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('filament-lockscreen')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_filament-lockscreen_table')
+            ->hasCommand(FilamentLockscreenCommand::class);
     }
 }

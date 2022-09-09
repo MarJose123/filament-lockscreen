@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace filament-lockscreen\FilamentLockscreen\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentLockscreenCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-lockscreen';
 
     public $description = 'My command';
 
