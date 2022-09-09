@@ -2,6 +2,8 @@
 
 namespace lockscreen\FilamentLockscreen;
 
+use Filament\Facades\Filament;
+use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
@@ -27,12 +29,22 @@ class FilamentLockscreenServiceProvider extends PluginServiceProvider
     /**
      * @throws BindingResolutionException
      */
-    public function packageBooted()
+    public function bootingPackage()
     {
-        parent::packageBooted();
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', Locker::class);
     }
 
-
+    public function packageBooted(): void
+    {
+        parent::packageBooted();
+        Filament::serving(function () {
+            Filament::registerUserMenuItems([
+                'lockscreen' => UserMenuItem::make()
+                    ->label('Lock Screen')
+                    ->url(route('lockscreenpage'))
+                    ->icon('heroicon-s-lock-closed'),
+            ]);
+        });
+    }
 }

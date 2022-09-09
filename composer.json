@@ -1,6 +1,7 @@
 {
     "name": "marjose123/filament-lockscreen",
     "description": "This is my package filament-lockscreen",
+    "type": "library",
     "keywords": [
         "MarJose123",
         "laravel",
@@ -48,6 +49,8 @@
     },
     "config": {
         "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
         "allow-plugins": {
             "pestphp/pest-plugin": false
         }
