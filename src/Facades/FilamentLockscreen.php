@@ -1,16 +1,16 @@
 <?php
 
-namespace filament-lockscreen\FilamentLockscreen\Facades;
+namespace lockscreen\FilamentLockscreen\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \filament-lockscreen\FilamentLockscreen\FilamentLockscreen
+ * @see \lockscreen\FilamentLockscreen\FilamentLockscreen
  */
 class FilamentLockscreen extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \filament-lockscreen\FilamentLockscreen\FilamentLockscreen::class;
+        return \lockscreen\FilamentLockscreen\FilamentLockscreen::class;
     }
 }

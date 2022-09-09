@@ -1,6 +1,6 @@
 <?php
 
-namespace filament-lockscreen\FilamentLockscreen;
+namespace lockscreen\FilamentLockscreen;
 
 class FilamentLockscreen
 {

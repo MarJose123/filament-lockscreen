@@ -1,6 +1,6 @@
 <?php
 
-namespace filament-lockscreen\FilamentLockscreen\Commands;
+namespace lockscreen\FilamentLockscreen\Commands;
 
 use Illuminate\Console\Command;
 

@@ -31,13 +31,13 @@
     },
     "autoload": {
         "psr-4": {
-            "filament-lockscreen\\FilamentLockscreen\\": "src",
-            "filament-lockscreen\\FilamentLockscreen\\Database\\Factories\\": "database/factories"
+            "lockscreen\\FilamentLockscreen\\": "src",
+            "lockscreen\\FilamentLockscreen\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "filament-lockscreen\\FilamentLockscreen\\Tests\\": "tests"
+            "lockscreen\\FilamentLockscreen\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -55,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "filament-lockscreen\\FilamentLockscreen\\FilamentLockscreenServiceProvider"
+                "lockscreen\\FilamentLockscreen\\FilamentLockscreenServiceProvider"
             ],
             "aliases": {
-                "FilamentLockscreen": "filament-lockscreen\\FilamentLockscreen\\Facades\\FilamentLockscreen"
+                "FilamentLockscreen": "lockscreen\\FilamentLockscreen\\Facades\\FilamentLockscreen"
             }
         }
     },

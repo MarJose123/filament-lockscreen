@@ -1,10 +1,13 @@
 <?php
 
-namespace filament-lockscreen\FilamentLockscreen;
+namespace lockscreen\FilamentLockscreen;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Routing\Router;
+use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use filament-lockscreen\FilamentLockscreen\Commands\FilamentLockscreenCommand;
+use lockscreen\FilamentLockscreen\Commands\FilamentLockscreenCommand;
 
 class FilamentLockscreenServiceProvider extends PackageServiceProvider
 {
@@ -18,8 +21,19 @@ class FilamentLockscreenServiceProvider extends PackageServiceProvider
         $package
             ->name('filament-lockscreen')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_filament-lockscreen_table')
-            ->hasCommand(FilamentLockscreenCommand::class);
+            ->hasRoute('web')
+            ;
     }
+
+    /**
+     * @throws BindingResolutionException
+     */
+    public function packageBooted()
+    {
+        parent::packageBooted();
+        $router = $this->app->make(Router::class);
+        $router->pushMiddlewareToGroup('web', Locker::class);
+    }
+
+
 }
