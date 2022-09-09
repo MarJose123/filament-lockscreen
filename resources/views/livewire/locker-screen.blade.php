@@ -26,5 +26,5 @@
 
         </form>
     </div>
-
+    @livewire('notifications')
 </div>
