@@ -2,14 +2,13 @@
 
 namespace lockscreen\FilamentLockscreen;
 
+use Filament\PluginServiceProvider;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use lockscreen\FilamentLockscreen\Commands\FilamentLockscreenCommand;
 
-class FilamentLockscreenServiceProvider extends PackageServiceProvider
+class FilamentLockscreenServiceProvider extends PluginServiceProvider
 {
     public function configurePackage(Package $package): void
     {
