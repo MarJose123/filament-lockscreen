@@ -25,6 +25,7 @@ class FilamentLockscreenServiceProvider extends PluginServiceProvider
             ->name('filament-lockscreen')
             ->hasConfigFile()
             ->hasViews()
+            ->hasTranslations()
             ->hasRoute('web')
             ;
     }

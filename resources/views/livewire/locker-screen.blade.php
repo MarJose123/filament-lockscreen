@@ -9,7 +9,7 @@
         ])>
             <div>
                 <h2 class="font-bold tracking-tight text-center text-2xl">
-                    {{ __('Lock Screen') }}
+                    {{ __('filament-lockscreen::default.heading') }}
                 </h2>
             </div>
             <div class="flex flex-row justify-center">
@@ -19,12 +19,16 @@
             {{ $this->form }}
 
             <x-filament::button type="submit" class="w-full">
-                {{ __('filament::login.buttons.submit.label') }}
+                {{ __('filament-lockscreen::default.button.submit_label') }}
             </x-filament::button>
-
-
-
         </form>
+        <div class="text-center">
+        <x-filament::link>
+            <a class="text-primary-600 hover:text-primary-700"
+               href="#!">
+                {{ __('filament-lockscreen::default.button.switch_account') }}</a>
+        </x-filament::link>
+        </div>
     </div>
     @livewire('notifications')
 </div>
