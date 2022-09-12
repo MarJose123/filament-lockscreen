@@ -2,17 +2,17 @@
 
 namespace lockscreen\FilamentLockscreen\Http\Livewire;
 
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Facades\Filament;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Phpsa\FilamentPasswordReveal\Password;
 
 class LockerScreen extends Component implements HasForms
 {
-    use InteractsWithForms;
+    use InteractsWithForms, WithRateLimiting;
 
     public ?string $password = '';
 
@@ -21,24 +21,37 @@ class LockerScreen extends Component implements HasForms
         session(['lockscreen' => true]);
     }
 
+    public function doRateLimit()
+    {
+        try {
+            $this->rateLimit(5);
+        } catch (TooManyRequestsException $exception) {
+            $this->addError(
+                'password', __('filament::login.messages.throttled', [
+                'seconds' => $exception->secondsUntilAvailable,
+                'minutes' => ceil($exception->secondsUntilAvailable / 60),
+            ]));
+
+            return null;
+        }
+    }
+
     public function login()
     {
         $data = $this->form->getState();
-       /* if (Auth::attempt(['username' => Filament::auth()->user()->username, 'password' => $data['password']])) {
-            session()->regenerate();
-            $user = Auth::user();
-            session()->forget('lockscreen');
-            Notification::make()
-                ->title('Successfully login')
-                ->success()
-                ->send();
-            return redirect()->route(config('filament.home_url'));
-        }*/
-        Notification::make()
-            ->title('Invalid password')
-            ->success()
-            ->send();
-        return redirect()->route('lockscreenpage');
+        $this->doRateLimit();
+
+        if (! Filament::auth()->attempt([
+            'email' =>  Filament::auth()->user()->email,
+            'password' => $data['password']
+        ])) {
+            $this->addError('password', __('filament::login.messages.failed'));
+            return null;
+        }
+        // redirect to the main page and forge the lockscreen session
+        session()->forget('lockscreen');
+        session()->regenerate();
+        return redirect(config('filament.home_url'));
 
     }
 

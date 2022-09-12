@@ -18,6 +18,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "danharrin/livewire-rate-limiting": "^1.0",
         "filament/filament": "^2.0",
         "illuminate/contracts": "^9.0",
         "phpsa/filament-password-reveal": "^1.1",
