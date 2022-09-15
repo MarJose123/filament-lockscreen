@@ -58,7 +58,7 @@ class LockerScreen extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return[
-            app(config('filament-lockscreen.fields.password'), TextInput::class)::make('password')
+            config('filament-lockscreen.fields.password', TextInput::class)::make('password')
                 ->password()
                 ->label('Password')
                 ->required(),

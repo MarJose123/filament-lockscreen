@@ -31,7 +31,34 @@ Add this middleware `Locker::class` to your `Filament Config` and you're ready t
         ],
        // .....
     ],
-``` 
+```
+
+## Using the plugin [FilamentPasswordReveal](https://github.com/phpsa/filament-password-reveal)
+
+```bash
+composer require marjose123/filament-lockscreen
+```
+
+Publish the config files
+
+```bash
+php artisan vendor:publish --tag="filament-lockscreen-config"
+```
+
+Update the config `filament-lockscreen.fields.password`:
+
+```php
+
+<?php
+
+// config for filament-lockscreen/FilamentLockscreen
+return [
+    'fields' => [
+        'password' => \Phpsa\FilamentPasswordReveal\Password::class
+    ]
+];
+
+```
 
 ## Testing
 
