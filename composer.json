@@ -17,11 +17,9 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "danharrin/livewire-rate-limiting": "^1.0",
+        "php": "^8.0",
         "filament/filament": "^2.0",
-        "illuminate/contracts": "^9.0",
-        "phpsa/filament-password-reveal": "^1.1",
+        "illuminate/contracts": "^8.0|^9.0",
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {

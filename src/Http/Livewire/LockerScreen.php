@@ -7,8 +7,8 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Facades\Filament;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Components\TextInput;
 use Livewire\Component;
-use Phpsa\FilamentPasswordReveal\Password;
 
 class LockerScreen extends Component implements HasForms
 {
@@ -58,7 +58,8 @@ class LockerScreen extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return[
-            Password::make('password')
+            app(config('filament-lockscreen.fields.password'), TextInput::class)::make('password')
+                ->password()
                 ->label('Password')
                 ->required(),
         ];

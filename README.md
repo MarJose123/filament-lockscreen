@@ -31,7 +31,7 @@ Add this middleware `Locker::class` to your `Filament Config` and you're ready t
         ],
        // .....
     ],
-```
+``` 
 
 ## Testing
 
