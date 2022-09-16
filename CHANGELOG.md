@@ -2,6 +2,18 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.0.2 - 2022-09-16
+
+### What's Changed
+
+- fix(avatar display): Applied fixes for the avatar display if the fila… by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/3
+
+### New Contributors
+
+- @MarJose123 made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/3
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.0.1...1.0.2
+
 ## 1.0.1 - 2022-09-15
 
 ### What's Changed
