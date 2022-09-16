@@ -13,7 +13,7 @@
                 </h2>
             </div>
             <div class="flex flex-row justify-center">
-                <img class="w-56 h-56 rounded-full" src="{{url( \Filament\Facades\Filament::getUserAvatarUrl(\Filament\Facades\Filament::auth()->user()))}}" alt="avatar">
+                <img class="w-56 h-56 rounded-full" src="{{ \Filament\Facades\Filament::getUserAvatarUrl(\Filament\Facades\Filament::auth()->user())}}" alt="avatar">
             </div>
 
             {{ $this->form }}
