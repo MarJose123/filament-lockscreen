@@ -19,6 +19,10 @@ class LockerScreen extends Component implements HasForms
     public function mount()
     {
         session(['lockscreen' => true]);
+        if(!session()->has('next') || session()->get('next') === null)
+        {
+            session(['next' => url()->previous()]);
+        }
     }
 
     public function doRateLimit()
@@ -51,8 +55,12 @@ class LockerScreen extends Component implements HasForms
         // redirect to the main page and forge the lockscreen session
         session()->forget('lockscreen');
         session()->regenerate();
-        return redirect(config('filament.home_url'));
-
+        if(config('filament-lockscreen.enable_redirect_to')) return redirect()->route(config('filament-lockscreen.redirect_route'));
+        // store to variable
+        $url = session()->get('next');
+        // remove the value
+        session()->forget('next');
+        return redirect($url);
     }
 
     protected function getFormSchema(): array
