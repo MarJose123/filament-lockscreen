@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.0.5 - 2022-10-06
+
+### What's Changed
+
+- style(redirect): clean code style by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/8
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.0.4...1.0.5
+
 ## 1.0.4 - 2022-10-06
 
 ### What's Changed
