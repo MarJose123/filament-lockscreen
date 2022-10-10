@@ -15,5 +15,6 @@ return [
     'rate_limit' => [
         'enable_rate_limit' => true,
         'rate_limit_max_count' => 5, // max count for failure login allowed.
+        'force_logout' => false,
     ],
 ];
