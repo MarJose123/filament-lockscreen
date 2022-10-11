@@ -32,6 +32,11 @@ class LockerScreen extends Component implements HasForms
         try {
             $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count'));
         } catch (TooManyRequestsException $exception) {
+            if(config('filament-lockscreen.rate_limit.force_logout', false))
+            {
+               return $this->forceLogout();
+            }
+
             $this->addError(
                 'password', __('filament::login.messages.throttled', [
                 'seconds' => $exception->secondsUntilAvailable,
