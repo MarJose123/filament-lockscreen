@@ -7,6 +7,7 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Facades\Filament;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
 use Livewire\Component;
 use Phpsa\FilamentPasswordReveal\Password;
 
@@ -31,6 +32,11 @@ class LockerScreen extends Component implements HasForms
         try {
             $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
         } catch (TooManyRequestsException $exception) {
+            if(config('filament-lockscreen.rate_limit.force_logout', false))
+            {
+               return $this->forceLogout();
+            }
+
             $this->addError(
                 'password', __('filament::login.messages.throttled', [
                 'seconds' => $exception->secondsUntilAvailable,
@@ -39,6 +45,21 @@ class LockerScreen extends Component implements HasForms
 
             return null;
         }
+    }
+
+    protected function forceLogout()
+    {
+        Filament::auth()->logout();
+        session()->invalidate();
+        session()->regenerateToken();
+
+        Notification::make()
+            ->title(__('filament-lockscreen::default.notification.title'))
+            ->body(__('filament-lockscreen::default.notification.message'))
+            ->danger()
+            ->send();
+
+        return redirect(url(config('filament.home_url')));
     }
 
     public function login()
