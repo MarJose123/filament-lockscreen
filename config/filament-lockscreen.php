@@ -22,7 +22,7 @@ return [
     *  e.g., if the segment is enabled then locked_path = ['admin', 'employee']
     *  www.domain.com/admin/ <== Locked, because this segment path is added to the locked_path
     *  www.domain.com/employee/ <== Locked, because this segment path is added to the locked_path
-    *  www.domain.com/portal/ <== unlocked and will not be check by the locker middleware even if the user lock their screen
+    *  www.domain.com/portal/ <== unlocked and will not be checked by the locker middleware even if the user lock their screen
     *
     * Note: make sure your segment_needle and allowed path is aligned
     */
