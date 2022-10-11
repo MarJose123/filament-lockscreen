@@ -45,12 +45,12 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-If you want to contribute to Filament packages, you may want to test it in a real Laravel project:
+If you want to contribute to Filament-lockerscreen packages, you may want to test it in a real Laravel project:
 
 * Fork this repository to your GitHub account.
 * Create a Laravel app locally.
 * Clone your fork in your Laravel app's root directory.
-* In the /filament directory, create a branch for your fix, e.g. fix/error-message.
+* In the /filament-lockscreen directory, create a branch for your fix, e.g. fix/error-message.
 
 Install the packages in your app's `composer.json`:
 
