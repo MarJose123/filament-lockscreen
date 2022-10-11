@@ -26,25 +26,6 @@ class LockerScreen extends Component implements HasForms
                 session(['next' => url()->previous()]);
             }
     }
-
-    public function doRateLimit()
-    {
-        try {
-            $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
-        } catch (TooManyRequestsException $exception) {
-            if(config('filament-lockscreen.rate_limit.force_logout', false))
-            {
-               $this->forceLogout();
-                return redirect(url(config('filament.path')));
-            }
-            $this->addError(
-                'password', __('filament::login.messages.throttled', [
-                'seconds' => $exception->secondsUntilAvailable,
-                'minutes' => ceil($exception->secondsUntilAvailable / 60),
-            ]));
-        }
-    }
-
     protected function forceLogout()
     {
         Filament::auth()->logout();
