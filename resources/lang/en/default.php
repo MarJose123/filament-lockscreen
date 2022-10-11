@@ -8,6 +8,6 @@ return [
     ],
     'notification' => [
         'title' => 'Login failure',
-        'message' => 'You\'ll be redirected to the login page.',
+        'message' => 'You have been redirected to the login page after succeeding login failure.',
     ]
 ];

@@ -32,18 +32,22 @@ class LockerScreen extends Component implements HasForms
         try {
             $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
         } catch (TooManyRequestsException $exception) {
-            if(config('filament-lockscreen.rate_limit.force_logout', false))
-            {
-               return $this->forceLogout();
-            }
-
             $this->addError(
                 'password', __('filament::login.messages.throttled', [
                 'seconds' => $exception->secondsUntilAvailable,
                 'minutes' => ceil($exception->secondsUntilAvailable / 60),
             ]));
 
-            return null;
+            if(config('filament-lockscreen.rate_limit.force_logout', false))
+            {
+               $this->forceLogout();
+                return redirect(url(config('filament.path')));
+            }else
+            {
+                return null;
+            }
+
+
         }
     }
 
@@ -58,8 +62,6 @@ class LockerScreen extends Component implements HasForms
             ->body(__('filament-lockscreen::default.notification.message'))
             ->danger()
             ->send();
-
-        return redirect(url(config('filament.home_url')));
     }
 
     public function login()
@@ -71,7 +73,7 @@ class LockerScreen extends Component implements HasForms
          */
         if(config('filament-lockscreen.rate_limit.enable_rate_limit'))
         {
-            $this->doRateLimit();
+          return $this->doRateLimit();
         }
 
         if (! Filament::auth()->attempt([
