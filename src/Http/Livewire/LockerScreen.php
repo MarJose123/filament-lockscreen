@@ -32,21 +32,19 @@ class LockerScreen extends Component implements HasForms
         try {
             $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
         } catch (TooManyRequestsException $exception) {
-            $this->addError(
-                'password', __('filament::login.messages.throttled', [
-                'seconds' => $exception->secondsUntilAvailable,
-                'minutes' => ceil($exception->secondsUntilAvailable / 60),
-            ]));
+
 
             if(config('filament-lockscreen.rate_limit.force_logout', false))
             {
                $this->forceLogout();
                 return redirect(url(config('filament.path')));
-            }else
-            {
-                return null;
             }
-
+            $this->addError(
+                'password', __('filament::login.messages.throttled', [
+                'seconds' => $exception->secondsUntilAvailable,
+                'minutes' => ceil($exception->secondsUntilAvailable / 60),
+            ]));
+            return null;
 
         }
     }
@@ -68,21 +66,21 @@ class LockerScreen extends Component implements HasForms
     {
         $data = $this->form->getState();
 
-        /*
-         *  Rate Limit
-         */
-        if(config('filament-lockscreen.rate_limit.enable_rate_limit'))
-        {
-          return $this->doRateLimit();
-        }
-
         if (! Filament::auth()->attempt([
             'email' =>  Filament::auth()->user()->email,
             'password' => $data['password']
         ])) {
             $this->addError('password', __('filament::login.messages.failed'));
-            return null;
         }
+
+        /*
+        *  Rate Limit
+        */
+        if(config('filament-lockscreen.rate_limit.enable_rate_limit'))
+        {
+            return  $this->doRateLimit();
+        }
+
         // redirect to the main page and forge the lockscreen session
         session()->forget('lockscreen');
         session()->regenerate();
