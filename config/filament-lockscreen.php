@@ -19,15 +19,16 @@ return [
     ],
     /* =========================
     *  Path segmentation
-    *  e.g., if the segment is enabled then allowed_path = ['admin', 'employee']
-    *  www.domain.com/admin/ <== Locked, because this segment path is not added to the allowed_path
-    *  www.domain.com/employee/ <== Locked, because this segment path is not added to the allowed_path
+    *  e.g., if the segment is enabled then locked_path = ['admin', 'employee']
+    *  www.domain.com/admin/ <== Locked, because this segment path is not added to the locked_path
+    *  www.domain.com/employee/ <== Locked, because this segment path is not added to the locked_path
     *  www.domain.com/portal/ <== unlocked and will not be check by the locker middleware even if the user lock their screen
     *
+    * Note: make sure your segment_needle and allowed path is aligned
     */
     'segment' => [
         'specific_path_only' => false, // if false, then all the request will be blocked by the locker and will be redirected to the authentication page
         'segment_needle' => 1, // see the https://laravel.com/api/9.x/Illuminate/Http/Request.html#method_segment
-        'allowed_path' => [] //
+        'locked_path' => [] //
     ]
 ];
