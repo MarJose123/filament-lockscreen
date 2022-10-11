@@ -32,8 +32,6 @@ class LockerScreen extends Component implements HasForms
         try {
             $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
         } catch (TooManyRequestsException $exception) {
-
-
             if(config('filament-lockscreen.rate_limit.force_logout', false))
             {
                $this->forceLogout();
@@ -44,8 +42,6 @@ class LockerScreen extends Component implements HasForms
                 'seconds' => $exception->secondsUntilAvailable,
                 'minutes' => ceil($exception->secondsUntilAvailable / 60),
             ]));
-            return null;
-
         }
     }
 
@@ -66,20 +62,37 @@ class LockerScreen extends Component implements HasForms
     {
         $data = $this->form->getState();
 
+        /*
+          *  Rate Limit
+          */
+        if(config('filament-lockscreen.rate_limit.enable_rate_limit'))
+        {
+            try {
+                $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
+            } catch (TooManyRequestsException $exception) {
+                if(config('filament-lockscreen.rate_limit.force_logout', false))
+                {
+                    $this->forceLogout();
+                    return redirect(url(config('filament.path')));
+                }
+                $this->addError(
+                    'password', __('filament::login.messages.throttled', [
+                    'seconds' => $exception->secondsUntilAvailable,
+                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                ]));
+                return null;
+            }
+        }
+
         if (! Filament::auth()->attempt([
             'email' =>  Filament::auth()->user()->email,
             'password' => $data['password']
         ])) {
             $this->addError('password', __('filament::login.messages.failed'));
+            return null;
         }
 
-        /*
-        *  Rate Limit
-        */
-        if(config('filament-lockscreen.rate_limit.enable_rate_limit'))
-        {
-            return  $this->doRateLimit();
-        }
+
 
         // redirect to the main page and forge the lockscreen session
         session()->forget('lockscreen');
