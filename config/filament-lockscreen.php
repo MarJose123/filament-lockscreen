@@ -18,7 +18,7 @@ return [
         'force_logout' => false,
     ],
     /* =========================
-    *  Path segmentation
+    *  Path segmentation locking
     *  e.g., if the segment is enabled then locked_path = ['admin', 'employee']
     *  www.domain.com/admin/ <== Locked, because this segment path is not added to the locked_path
     *  www.domain.com/employee/ <== Locked, because this segment path is not added to the locked_path
