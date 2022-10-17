@@ -2,6 +2,17 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.1.0 - 2022-10-17
+
+### What's Changed
+
+- Added option to disable rate limiting by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/11
+- added default of 5 count by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/14
+- Feat/force logout by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/15
+- Feat/segment by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/16
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.0.5...1.1.0
+
 ## 1.0.5 - 2022-10-06
 
 ### What's Changed
