@@ -45,7 +45,7 @@ class FilamentLockscreenServiceProvider extends PluginServiceProvider
         Filament::serving(function () {
             Filament::registerUserMenuItems([
                 'lockscreen' => UserMenuItem::make()
-                    ->label('Lock Screen')
+                    ->label(__('Lock Screen'))
                     ->url(route('lockscreenpage'))
                     ->icon('heroicon-s-lock-closed'),
             ]);
