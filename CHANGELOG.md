@@ -2,6 +2,18 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.1.1 - 2022-10-20
+
+### What's Changed
+
+- Enable the translation of "Password" and "Lock Screen" by @MLTDev in https://github.com/MarJose123/filament-lockscreen/pull/17
+
+### New Contributors
+
+- @MLTDev made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/17
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.1.0...1.1.1
+
 ## 1.1.0 - 2022-10-17
 
 ### What's Changed
