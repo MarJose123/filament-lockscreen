@@ -34,4 +34,5 @@
             </form>
         </div>
     </div>
+    @livewire('notifications')
 </div>
