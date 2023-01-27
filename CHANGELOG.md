@@ -2,6 +2,19 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.1.2 - 2023-01-27
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/18
+- UA & RU Translation by @HomaEEE in https://github.com/MarJose123/filament-lockscreen/pull/19
+
+### New Contributors
+
+- @HomaEEE made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/19
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.1.1...1.1.2
+
 ## 1.1.1 - 2022-10-20
 
 ### What's Changed
