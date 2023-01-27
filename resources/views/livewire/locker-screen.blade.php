@@ -1,5 +1,5 @@
 <div @class([
-    'flex items-center justify-center min-h-screen bg-gray-100 text-gray-900',
+    'flex items-center justify-center min-h-screen bg-gray-100 text-gray-900 filament-login-page',
     'dark:bg-gray-900 dark:text-white' => config('filament.dark_mode'),
 ])>
     <div class="px-6 -mt-16 md:mt-0 md:px-2 max-w-md space-y-8 w-screen">
