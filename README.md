@@ -3,7 +3,6 @@
 **_Give an ability to the user to lock their access without logging out of the system for a break._**
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/marjose123/filament-lockscreen/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/marjose123/filament-lockscreen/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 
 ## Installation
