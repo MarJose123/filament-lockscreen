@@ -2,6 +2,20 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.1.4 - 2023-05-18
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/22
+- provide an Ability to Change Name and Icon by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/24
+
+
+---
+
+Republish your `lang` or update it manually by using [THIS PR](https://github.com/MarJose123/filament-lockscreen/pull/24) as reference.
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.1.3...1.1.4
+
 ## 1.1.3 - 2023-02-22
 
 ### What's Changed
