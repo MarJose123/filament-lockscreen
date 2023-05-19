@@ -90,7 +90,7 @@ class LockerScreen extends Component implements HasForms
     {
         return[
             Password::make('password')
-                ->label(__('filament-lockscreen::default.password'))
+                ->label(__('filament-lockscreen::default.fields.password'))
                 ->required(),
         ];
     }
