@@ -2,6 +2,18 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.1.5 - 2023-05-19
+
+### What's Changed
+
+- password label translation from languages by @Valpuia in https://github.com/MarJose123/filament-lockscreen/pull/26
+
+### New Contributors
+
+- @Valpuia made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/26
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.1.4...1.1.5
+
 ## 1.1.4 - 2023-05-18
 
 ### What's Changed
