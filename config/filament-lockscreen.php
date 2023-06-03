@@ -6,11 +6,6 @@ return [
      */
     'icon' => 'heroicon-s-lock-closed',
 
-    /*
-     *  Lock Screen URL
-     */
-    'url' => '/screen/lock',
-
     /* =======================================
      *   if `enable_redirect_to` is TRUE then after login, it will be redirected to the route setup under `redirect_route`
      */
