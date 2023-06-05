@@ -1,25 +1,10 @@
 <?php
-
-use Filament\Facades\Filament;
-
 return [
 
     /*
      *  Lock Screen Icon
      */
     'icon' => 'heroicon-s-lock-closed',
-
-    /*
-    | ------------------------------------------------------------------------------------------------
-    |   Table Column Name
-    | ------------------------------------------------------------------------------------------------
-    | Change the table column name if your login authentication column is checking on a different field and not on the default field ('email and password') column of the table.
-    */
-    'table_columns' => [
-        'account_username_field' => 'email',
-        'account_username' => Filament::auth()->user()->email,
-        'account_password' => 'password',
-    ],
 
     /* =======================================
      *   if `enable_redirect_to` is TRUE then after login, it will be redirected to the route setup under `redirect_route`
@@ -36,7 +21,6 @@ return [
         'rate_limit_max_count' => 5, // max count for failure login allowed.
         'force_logout' => false,
     ],
-
     /* =========================
     *  Path segmentation locking
     *  e.g., if the segment is enabled then locked_path = ['admin', 'employee']
@@ -49,6 +33,6 @@ return [
     'segment' => [
         'specific_path_only' => false, // if false, then all the request will be blocked by the locker and will be redirected to the authentication page
         'segment_needle' => 1, // see the https://laravel.com/api/9.x/Illuminate/Http/Request.html#method_segment
-        'locked_path' => [], //
-    ],
+        'locked_path' => [] //
+    ]
 ];

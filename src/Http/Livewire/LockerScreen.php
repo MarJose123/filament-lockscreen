@@ -20,13 +20,12 @@ class LockerScreen extends Component implements HasForms
     public function mount()
     {
         session(['lockscreen' => true]);
-        if (! config('filament-lockscreen.enable_redirect_to')) {
-            if (! session()->has('next') || session()->get('next') === null) {
+        if(!config('filament-lockscreen.enable_redirect_to'))
+            if(!session()->has('next') || session()->get('next') === null )
+            {
                 session(['next' => url()->previous()]);
             }
-        }
     }
-
     protected function forceLogout()
     {
         Filament::auth()->logout();
@@ -47,45 +46,43 @@ class LockerScreen extends Component implements HasForms
         /*
           *  Rate Limit
           */
-        if (config('filament-lockscreen.rate_limit.enable_rate_limit')) {
+        if(config('filament-lockscreen.rate_limit.enable_rate_limit'))
+        {
             try {
                 $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
             } catch (TooManyRequestsException $exception) {
-                if (config('filament-lockscreen.rate_limit.force_logout', false)) {
+                if(config('filament-lockscreen.rate_limit.force_logout', false))
+                {
                     $this->forceLogout();
-
                     return redirect(url(config('filament.path')));
                 }
                 $this->addError(
                     'password', __('filament::login.messages.throttled', [
-                        'seconds' => $exception->secondsUntilAvailable,
-                        'minutes' => ceil($exception->secondsUntilAvailable / 60),
-                    ]));
-
+                    'seconds' => $exception->secondsUntilAvailable,
+                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                ]));
                 return null;
             }
         }
 
         if (! Filament::auth()->attempt([
-            config('filament-lockscreen.table_columns.account_username_field') => config('filament-lockscreen.table_columns.account_username'),
-            config('filament-lockscreen.table_columns.account_password') => $data['password'],
+            'email' =>  Filament::auth()->user()->email,
+            'password' => $data['password']
         ])) {
             $this->addError('password', __('filament::login.messages.failed'));
-
             return null;
         }
+
+
 
         // redirect to the main page and forge the lockscreen session
         session()->forget('lockscreen');
         session()->regenerate();
-        if (config('filament-lockscreen.enable_redirect_to')) {
-            return redirect()->route(config('filament-lockscreen.redirect_route'));
-        }
+        if(config('filament-lockscreen.enable_redirect_to')) return redirect()->route(config('filament-lockscreen.redirect_route'));
         // store to variable
         $url = session()->get('next');
         // remove the value
         session()->forget('next');
-
         return redirect($url);
     }
 
@@ -97,6 +94,7 @@ class LockerScreen extends Component implements HasForms
                 ->required(),
         ];
     }
+
 
     public function render()
     {
