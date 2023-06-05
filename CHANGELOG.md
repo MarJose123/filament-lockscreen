@@ -2,6 +2,27 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.2.1 - 2023-06-05
+
+### What's Changed
+
+- Revert "Feat custom auth fields" by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/33
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.2.0...1.2.1
+
+## 1.2.0 - 2023-06-05
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.4.0 to 1.5.0 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/27
+- Bump dependabot/fetch-metadata from 1.5.0 to 1.5.1 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/28
+- Feat custom auth fields by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/31
+- Updated README.md by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/32
+
+***Please see the latest config in README.MD***
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.1.5...1.2.0
+
 ## 1.1.5 - 2023-05-19
 
 ### What's Changed
