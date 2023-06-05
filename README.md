@@ -36,12 +36,6 @@ Add this middleware `Locker::class` to your `Filament Config` and you're ready t
 ```php
 return [
 
-   <?php
-
-use Filament\Facades\Filament;
-
-return [
-
     /*
      *  Lock Screen Icon
      */
@@ -55,8 +49,7 @@ return [
     */
     'table_columns' => [
         'account_username_field' => 'email',
-        'account_username' => Filament::auth()->user()->email,
-        'account_password' => 'password',
+        'account_password_field' => 'password',
     ],
 
     /* =======================================
@@ -74,7 +67,6 @@ return [
         'rate_limit_max_count' => 5, // max count for failure login allowed.
         'force_logout' => false,
     ],
-
     /* =========================
     *  Path segmentation locking
     *  e.g., if the segment is enabled then locked_path = ['admin', 'employee']
