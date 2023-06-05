@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.2.3 - 2023-06-05
+
+### What's Changed
+
+- ability to change lock screen url by @Valpuia in https://github.com/MarJose123/filament-lockscreen/pull/36
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.2.2...1.2.3
+
 ## 1.2.2 - 2023-06-05
 
 ### What's Changed
