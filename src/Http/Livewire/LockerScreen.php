@@ -17,6 +17,8 @@ class LockerScreen extends Component implements HasForms
 
     public ?string $password = '';
 
+    private ?string $account_username_field, $account_password_field;
+
     public function mount()
     {
         session(['lockscreen' => true]);
@@ -42,6 +44,8 @@ class LockerScreen extends Component implements HasForms
     public function login()
     {
         $data = $this->form->getState();
+        $this->account_password_field = config('filament-lockscreen.table_columns.account_password_field');
+        $this->account_username_field = config('filament-lockscreen.table_columns.account_username_field');
 
         /*
           *  Rate Limit
@@ -66,8 +70,8 @@ class LockerScreen extends Component implements HasForms
         }
 
         if (! Filament::auth()->attempt([
-            'email' =>  Filament::auth()->user()->email,
-            'password' => $data['password']
+          $this->account_username_field => Filament::auth()->user()->{$this->account_username_field},
+            $this->account_password_field => $data['password']
         ])) {
             $this->addError('password', __('filament::login.messages.failed'));
             return null;
