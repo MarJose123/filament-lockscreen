@@ -8,6 +8,13 @@ return [
     'icon' => 'heroicon-s-lock-closed',
 
     /*
+     *  Lock Screen URL
+     * 
+     * Note: do not provide base url `/` or empty, otherwise it will return default url
+     */
+    'url' => '/screen/lock',
+
+    /*
     | ------------------------------------------------------------------------------------------------
     |   Table Column Name
     | ------------------------------------------------------------------------------------------------
