@@ -26,8 +26,7 @@ class FilamentLockscreenServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
-            ->hasRoute('web')
-            ;
+            ->hasRoute('web');
     }
 
     /**
