@@ -1,7 +1,5 @@
 <?php
 
-use Filament\Facades\Filament;
-
 return [
 
     /*
@@ -47,6 +45,6 @@ return [
     'segment' => [
         'specific_path_only' => false, // if false, then all the request will be blocked by the locker and will be redirected to the authentication page
         'segment_needle' => 1, // see the https://laravel.com/api/9.x/Illuminate/Http/Request.html#method_segment
-        'locked_path' => [] //
-    ]
+        'locked_path' => [], //
+    ],
 ];
