@@ -1,10 +1,24 @@
 <?php
+
+use Filament\Facades\Filament;
+
 return [
 
     /*
      *  Lock Screen Icon
      */
     'icon' => 'heroicon-s-lock-closed',
+
+    /*
+    | ------------------------------------------------------------------------------------------------
+    |   Table Column Name
+    | ------------------------------------------------------------------------------------------------
+    | Change the table column name if your login authentication column is checking on a different field and not on the default field ('email and password') column of the table.
+    */
+    'table_columns' => [
+        'account_username_field' => 'email',
+        'account_password_field' => 'password',
+    ],
 
     /* =======================================
      *   if `enable_redirect_to` is TRUE then after login, it will be redirected to the route setup under `redirect_route`
