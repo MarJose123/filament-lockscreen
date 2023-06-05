@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 1.2.1 - 2023-06-05
+
+### What's Changed
+
+- Revert "Feat custom auth fields" by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/33
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.2.0...1.2.1
+
 ## 1.2.0 - 2023-06-05
 
 ### What's Changed
