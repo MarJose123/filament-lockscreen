@@ -17,7 +17,8 @@ class Locker
     {
 
         if ($request->session()->get('lockscreen') && $request->method() === 'GET') {
-            return redirect()->route('lockscreenpage');
+            $panelId = filament()->getCurrentPanel()->getId();
+            return redirect()->route("lockscreen.{$panelId}.page");
         }
 
         return $next($request);
