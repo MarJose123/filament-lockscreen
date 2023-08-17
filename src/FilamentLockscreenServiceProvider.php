@@ -4,15 +4,15 @@ namespace lockscreen\FilamentLockscreen;
 
 use Filament\Facades\Filament;
 use Filament\Navigation\UserMenuItem;
-use Filament\PluginServiceProvider;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
 use Livewire\Livewire;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
-use Spatie\LaravelPackageTools\Package;
 
-class FilamentLockscreenServiceProvider extends PluginServiceProvider
+class FilamentLockscreenServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {

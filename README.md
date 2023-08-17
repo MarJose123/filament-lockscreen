@@ -21,17 +21,21 @@ Optionally, you can publish the views using
 ```bash
 php artisan vendor:publish --tag="filament-lockscreen-views"
 ```
-Add this middleware `Locker::class` to your `Filament Config` and you're ready to go
-```php
-// use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
+Add the plugin to your panel and add the middleware  `Locker::class` to your panel  and you're ready to go
+```php 
+use lockscreen\Lockscreen\Lockscreen;
+use lockscreen\Lockscreen\Http\Middleware\Locker;
 
-    'middleware' => [
-        'auth' => [
-          //....
-            Locker::class,
-        ],
-       // .....
-    ],
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        // ...
+        ->plugin(new Lockscreen::make());  // <- Add this.
+         ->authMiddleware([
+                // ...
+                 Locker::class,
+            ]);
+}
 ```
 <details>
 <summary>Config file: </summary>

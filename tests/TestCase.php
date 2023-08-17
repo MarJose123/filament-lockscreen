@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'filament-lockscreen\\FilamentLockscreen\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'filament-lockscreen\\Lockscreen\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
