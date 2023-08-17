@@ -37,19 +37,4 @@ class FilamentLockscreenServiceProvider extends PackageServiceProvider
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', Locker::class);
     }
-
-    public function packageBooted(): void
-    {
-        parent::packageBooted();
-        Filament::serving(function () {
-            Filament::registerUserMenuItems([
-                'lockscreen' => UserMenuItem::make()
-                    ->label(__('filament-lockscreen::default.user_menu_title'))
-                    ->url(route('lockscreenpage'))
-                    ->icon(config('filament-lockscreen.icon')),
-            ]);
-        });
-
-        Livewire::component('LockerScreen', LockerScreen::class);
-    }
 }
