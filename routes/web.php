@@ -9,9 +9,6 @@ Route::name('lockscreen.')
     ->group(function (){
         foreach (Filament::getPanels() as $panel) {
             $panelId = $panel->getId();
-            $hasTenancy = $panel->hasTenancy();
-            $tenantRoutePrefix = $panel->getTenantRoutePrefix();
-            $tenantSlugAttribute = $panel->getTenantSlugAttribute();
             $domains = $panel->getDomains();
 
             foreach ((empty($domains) ? [null] : $domains) as $domain) {
