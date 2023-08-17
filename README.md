@@ -1,4 +1,4 @@
-![](https://github.com/MarJose123/filament-lockscreen/blob/main/art/filament-lockscreen-1x.png)
+![](https://github.com/MarJose123/filament-lockscreen/blob/2.x/art/filament-lockscreen-1x.png)
 
 **_Give an ability to the user to lock their access without logging out of the system for a break._**
 
