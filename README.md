@@ -5,12 +5,15 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 [![Total Downloads](https://img.shields.io/packagist/dt/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 
+---
+:rotating_light: _For latest version that support FilamentPhp v2.x use this branch [1.x](https://github.com/MarJose123/filament-lockscreen/tree/1.x)_
+
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require marjose123/filament-lockscreen
+composer require marjose123/filament-lockscreen:"^2.0"
 ```
 
 Optionally, you can publish the views using
