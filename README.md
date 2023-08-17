@@ -1,16 +1,20 @@
-![](https://github.com/MarJose123/filament-lockscreen/blob/main/art/filament-lockscreen-1x.png)
+![](https://github.com/MarJose123/filament-lockscreen/blob/1.x/art/filament-lockscreen-1x.png)
 
 **_Give an ability to the user to lock their access without logging out of the system for a break._**
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 [![Total Downloads](https://img.shields.io/packagist/dt/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 
+---
+:rotating_light: _For latest version that support FilamentPhp v3.x use this branch [2.x](https://github.com/MarJose123/filament-lockscreen/tree/2.x)_
+
+
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require marjose123/filament-lockscreen
+composer require marjose123/filament-lockscreen:"^1.0"
 ```
 
 Optionally, you can publish the views using
