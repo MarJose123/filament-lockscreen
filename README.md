@@ -30,7 +30,7 @@ public function panel(Panel $panel): Panel
 {
     return $panel
         // ...
-        ->plugin(new Lockscreen::make());  // <- Add this
+        ->plugin(new Lockscreen());  // <- Add this
          ->authMiddleware([
                 // ...
                  Locker::class, // <- Add this
