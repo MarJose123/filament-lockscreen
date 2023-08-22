@@ -25,8 +25,8 @@ php artisan vendor:publish --tag="filament-lockscreen-views"
 ```
 Add the plugin to your panel and add the middleware  `Locker::class` to your panel  and you're ready to go
 ```php 
-use lockscreen\Lockscreen\Lockscreen;
-use lockscreen\Lockscreen\Http\Middleware\Locker;
+use lockscreen\FilamentLockscreen\Lockscreen;
+use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 
 public function panel(Panel $panel): Panel
 {
