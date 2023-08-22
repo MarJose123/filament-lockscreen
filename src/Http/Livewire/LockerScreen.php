@@ -12,6 +12,7 @@ use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\SimplePage;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class LockerScreen extends BasePage
@@ -161,9 +162,5 @@ class LockerScreen extends BasePage
     {
         return true;
     }
-
-
-
-
 
 }

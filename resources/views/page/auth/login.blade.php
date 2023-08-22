@@ -40,7 +40,5 @@
 
             </main>
         </div>
-
-        {{ \Filament\Support\Facades\FilamentView::renderHook('panels::footer') }}
     </div>
 </x-filament-panels::layout.base>
