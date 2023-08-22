@@ -64,7 +64,7 @@ class LockerScreen extends BasePage
         /*
           *  Rate Limit
           */
-        if (config('filament-lockscreen.rate_limit.enable_rate_limit')) {
+        if (config('filament-lockscreen.rate_limit.enable_rate_limit', true)) {
             try {
                 $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
             } catch (TooManyRequestsException $exception) {
@@ -85,12 +85,6 @@ class LockerScreen extends BasePage
                     $panelId = filament()->getCurrentPanel()->getId();
                     return redirect()->route("filament.{$panelId}.auth.login");
                 }
-                $this->addError(
-                    'password', __('filament-panels::pages/auth/login.notifications.throttled.title', [
-                        'seconds' => $exception->secondsUntilAvailable,
-                        'minutes' => ceil($exception->secondsUntilAvailable / 60),
-                    ]));
-
                 return null;
             }
         }
