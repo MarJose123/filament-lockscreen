@@ -5,17 +5,25 @@ namespace lockscreen\FilamentLockscreen\Http\Livewire;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Facades\Filament;
-use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Actions\Action;
+use Filament\Forms\Components\TextInput;
+use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Pages\SimplePage;
 use Livewire\Component;
-use Phpsa\FilamentPasswordReveal\Password;
 
-class LockerScreen extends Component implements HasForms
+class LockerScreen extends SimplePage
 {
-    use InteractsWithForms, WithRateLimiting;
+    use InteractsWithFormActions, WithRateLimiting;
+
+    protected static ?string $title = null;
+
+    protected ?string $maxContentWidth = 'full';
 
     public ?string $password = '';
+
+    protected static string $view ='filament-lockscreen::page.auth.login' ;
 
     private ?string $account_username_field;
 
@@ -23,12 +31,12 @@ class LockerScreen extends Component implements HasForms
 
     public function mount()
     {
-        session(['lockscreen' => true]);
+        /*session(['lockscreen' => true]);
         if (! config('filament-lockscreen.enable_redirect_to')) {
             if (! session()->has('next') || session()->get('next') === null) {
                 session(['next' => url()->previous()]);
             }
-        }
+        }*/
     }
 
     protected function forceLogout()
@@ -44,12 +52,11 @@ class LockerScreen extends Component implements HasForms
             ->send();
     }
 
-    public function login()
+    public function authenticate()
     {
         $data = $this->form->getState();
         $this->account_password_field = config('filament-lockscreen.table_columns.account_password_field');
         $this->account_username_field = config('filament-lockscreen.table_columns.account_username_field');
-
         /*
           *  Rate Limit
           */
@@ -57,10 +64,22 @@ class LockerScreen extends Component implements HasForms
             try {
                 $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
             } catch (TooManyRequestsException $exception) {
+                Notification::make()
+                    ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
+                        'seconds' => $exception->secondsUntilAvailable,
+                        'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                    ]))
+                    ->body(array_key_exists('body', __('filament-panels::pages/auth/login.notifications.throttled') ?: []) ? __('filament-panels::pages/auth/login.notifications.throttled.body', [
+                        'seconds' => $exception->secondsUntilAvailable,
+                        'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                    ]) : null)
+                    ->danger()
+                    ->send();
+
                 if (config('filament-lockscreen.rate_limit.force_logout', false)) {
                     $this->forceLogout();
-
-                    return redirect(url(config('filament.path')));
+                    $panelId = filament()->getCurrentPanel()->getId();
+                    return redirect()->route("filament.{$panelId}.auth.login");
                 }
                 $this->addError(
                     'password', __('filament::login.messages.throttled', [
@@ -98,17 +117,40 @@ class LockerScreen extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return[
-            Password::make('password')
+            TextInput::make('password')
                 ->label(__('filament-lockscreen::default.fields.password'))
+                ->password()
+                ->autocomplete(false)
                 ->required(),
         ];
     }
 
-    public function render()
+    public function getTitle(): \Illuminate\Contracts\Support\Htmlable|string
     {
-        return view('filament-lockscreen::livewire.locker-screen')
-            ->layout('filament::components.layouts.base', [
-                'title' => __('filament::login.title'),
-            ]);
+        return static::$title ?? (string) str(__('filament-lockscreen::default.heading'))
+            ->kebab()
+            ->replace('-', ' ')
+            ->title();
     }
+
+    protected function getAuthenticateFormAction(): Action
+    {
+        return Action::make('authenticate')
+            ->label(__('filament-panels::pages/auth/login.form.actions.authenticate.label'))
+            ->submit('authenticate');
+    }
+
+    /**
+     * @return array<Action | ActionGroup>
+     */
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getAuthenticateFormAction(),
+        ];
+    }
+
+
+
+
 }

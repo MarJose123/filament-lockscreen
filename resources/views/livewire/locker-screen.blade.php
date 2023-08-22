@@ -29,7 +29,7 @@
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('filament-lockscreen::default.button.switch_account') }}</a>
         </x-filament::link>
-            <form id="logout-form" action="{{ route('filament.auth.logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ url(filament()->getLogoutUrl()) }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
         </div>
