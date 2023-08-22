@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## 🎉 🚀 Initial Release for FilamentPhp V3. - 2023-08-22
+
+### What's Changed
+
+- 🎉 🚀 Initial Release for FilamentPhp V3.
+- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/38   
+  **Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.2.3...v2.0.0
+
 ## 1.2.3 - 2023-06-05
 
 ### What's Changed
