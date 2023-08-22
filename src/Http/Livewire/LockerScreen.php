@@ -7,13 +7,14 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Facades\Filament;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\BasePage;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\SimplePage;
 use Livewire\Component;
 
-class LockerScreen extends SimplePage
+class LockerScreen extends BasePage
 {
     use InteractsWithFormActions, WithRateLimiting;
 
@@ -133,6 +134,11 @@ class LockerScreen extends SimplePage
             ->kebab()
             ->replace('-', ' ')
             ->title();
+    }
+
+    public function hasLogo(): bool
+    {
+        return false;
     }
 
     protected function getAuthenticateFormAction(): Action
