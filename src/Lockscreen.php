@@ -16,7 +16,7 @@ class Lockscreen implements Plugin
 
     public function getId(): string
     {
-         return 'filament-lock-screen';
+         return 'filament-lockscreen';
     }
 
     public static function make(): static
