@@ -86,7 +86,7 @@ class LockerScreen extends BasePage
                     return redirect()->route("filament.{$panelId}.auth.login");
                 }
                 $this->addError(
-                    'password', __('filament::login.messages.throttled', [
+                    'password', __('filament-panels::pages/auth/login.notifications.throttled.title', [
                         'seconds' => $exception->secondsUntilAvailable,
                         'minutes' => ceil($exception->secondsUntilAvailable / 60),
                     ]));
@@ -99,8 +99,7 @@ class LockerScreen extends BasePage
             $this->account_username_field => Filament::auth()->user()->{$this->account_username_field},
             $this->account_password_field => $data['password'],
         ])) {
-            $this->addError('password', __('filament::login.messages.failed'));
-
+            $this->addError('password', __('filament-panels::pages/auth/login.messages.failed'));
             return null;
         }
 
