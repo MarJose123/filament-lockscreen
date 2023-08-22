@@ -2,6 +2,7 @@
 
 return [
 
+
     /*
      *  Lock Screen Icon
      */
@@ -34,4 +35,11 @@ return [
         'rate_limit_max_count' => 5, // max count for failure login allowed.
         'force_logout' => false,
     ],
+
+    /*
+     *  LockerScreen Login Page Controller
+     */
+
+    'controller' => \lockscreen\FilamentLockscreen\Http\Livewire\LockerScreenLoginPage::class
+
 ];

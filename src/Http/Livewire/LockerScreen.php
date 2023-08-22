@@ -21,6 +21,8 @@ class LockerScreen extends SimplePage
 
     protected ?string $maxContentWidth = 'full';
 
+    protected ?string $heading = null;
+
     public ?string $password = '';
 
     protected static string $view ='filament-lockscreen::page.auth.login' ;
@@ -136,7 +138,7 @@ class LockerScreen extends SimplePage
     protected function getAuthenticateFormAction(): Action
     {
         return Action::make('authenticate')
-            ->label(__('filament-panels::pages/auth/login.form.actions.authenticate.label'))
+            ->label(__('filament-lockscreen::default.button.submit_label'))
             ->submit('authenticate');
     }
 
@@ -149,6 +151,11 @@ class LockerScreen extends SimplePage
             $this->getAuthenticateFormAction(),
         ];
     }
+    protected function hasFullWidthFormActions(): bool
+    {
+        return true;
+    }
+
 
 
 

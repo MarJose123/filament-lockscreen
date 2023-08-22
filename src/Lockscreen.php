@@ -44,7 +44,7 @@ class Lockscreen implements Plugin
                 ->icon(config('filament-lockscreen.icon')),
         ]);
 
-        Livewire::component('LockerScreen', LockerScreen::class);
+        Livewire::component('LockerScreen', config('filament-lockscreen.controller'));
     }
 
 }
