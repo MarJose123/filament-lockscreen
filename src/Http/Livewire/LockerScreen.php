@@ -35,12 +35,12 @@ class LockerScreen extends BasePage
 
     public function mount()
     {
-        /*session(['lockscreen' => true]);
+        session(['lockscreen' => true]);
         if (! config('filament-lockscreen.enable_redirect_to')) {
             if (! session()->has('next') || session()->get('next') === null) {
                 session(['next' => url()->previous()]);
             }
-        }*/
+        }
     }
 
     protected function forceLogout()

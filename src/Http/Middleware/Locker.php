@@ -20,7 +20,6 @@ class Locker
             $panelId = filament()->getCurrentPanel()->getId();
             return redirect()->route("lockscreen.{$panelId}.page");
         }
-
         return $next($request);
     }
 }

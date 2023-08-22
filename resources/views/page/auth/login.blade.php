@@ -17,6 +17,11 @@
                     <div class="flex flex-row justify-center">
                         <img class="w-56 h-56 rounded-full" src="{{ \Filament\Facades\Filament::getUserAvatarUrl(\Filament\Facades\Filament::auth()->user())}}" alt="avatar">
                     </div>
+                    <div class="flex flex-row justify-center">
+                        <div class="font-medium dark:text-white">
+                            <div>{{\Filament\Facades\Filament::auth()->user()?->name ?? ''}}</div>
+                        </div>
+                    </div>
 
                     <x-filament-panels::form wire:submit="authenticate">
                         {{ $this->form }}
