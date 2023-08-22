@@ -21,7 +21,7 @@ class LockerScreen extends SimplePage
 
     protected ?string $maxContentWidth = 'full';
 
-    protected ?string $heading = null;
+    protected ?string $heading = '';
 
     public ?string $password = '';
 
