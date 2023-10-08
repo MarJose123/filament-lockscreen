@@ -2,6 +2,19 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.0.1 - 2023-10-08
+
+### What's Changed
+
+- Update lang/fr/default.php by @tgeorgel in https://github.com/MarJose123/filament-lockscreen/pull/41
+- Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/40
+
+### New Contributors
+
+- @tgeorgel made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/41
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.0.0...v2.0.1
+
 ## 🎉 🚀 Initial Release for FilamentPhp V3. - 2023-08-22
 
 ### What's Changed
