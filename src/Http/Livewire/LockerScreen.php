@@ -7,6 +7,7 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Facades\Filament;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\Actions\ActionGroup;
 use Filament\Pages\BasePage;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Forms\Contracts\HasForms;
@@ -35,6 +36,14 @@ class LockerScreen extends BasePage
 
     public function mount()
     {
+        // Check if the request is still authenticated or not before rendering the page,
+        // if not authenticated then redirect to the default filament login page
+
+        if(!Filament::auth()->check())
+        {
+            return redirect(Filament::getDefaultPanel()->getLoginUrl());
+        }
+
         session(['lockscreen' => true]);
         if (! config('filament-lockscreen.enable_redirect_to')) {
             if (! session()->has('next') || session()->get('next') === null) {
@@ -43,7 +52,7 @@ class LockerScreen extends BasePage
         }
     }
 
-    protected function forceLogout()
+    protected function forceLogout(): void
     {
         Filament::auth()->logout();
         session()->invalidate();
@@ -56,7 +65,7 @@ class LockerScreen extends BasePage
             ->send();
     }
 
-    public function authenticate()
+    public function authenticate(): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
     {
         $data = $this->form->getState();
         $this->account_password_field = config('filament-lockscreen.table_columns.account_password_field');
