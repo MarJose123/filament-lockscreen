@@ -15,9 +15,8 @@ class Locker
      */
     public function handle($request, Closure $next)
     {
-
-        if ($request->session()->get('lockscreen') && $request->method() === 'GET') {
-            $panelId = filament()->getCurrentPanel()->getId();
+        if ($request->method() === 'GET' && $request->session()->get('lockscreen') ) {
+            $panelId = filament()->getCurrentPanel()?->getId();
             return redirect()->route("lockscreen.{$panelId}.page");
         }
         return $next($request);
