@@ -2,6 +2,15 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.0.2 - 2024-01-22
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/43
+* add validation before the page is rendered by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/48
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.0.1...v2.0.2
+
 ## v2.0.1 - 2023-10-08
 
 ### What's Changed
@@ -20,7 +29,7 @@ All notable changes to `filament-lockscreen` will be documented in this file.
 ### What's Changed
 
 - 🎉 🚀 Initial Release for FilamentPhp V3.
-- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/38   
+- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/38
   **Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/1.2.3...v2.0.0
 
 ## 1.2.3 - 2023-06-05
