@@ -2,6 +2,18 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.0.3 - 2024-01-29
+
+### What's Changed
+
+* Add ckb & ku translation by @RawanD201 in https://github.com/MarJose123/filament-lockscreen/pull/49
+
+### New Contributors
+
+* @RawanD201 made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/49
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.0.2...v2.0.3
+
 ## v2.0.2 - 2024-01-22
 
 ### What's Changed
