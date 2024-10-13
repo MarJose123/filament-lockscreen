@@ -44,6 +44,18 @@ public function panel(Panel $panel): Panel
 }
 ```
 
+### Breezy 2FA Integration
+Update your `filament-lockscreen` config file for [Breezy](https://github.com/jeffgreco13/filament-breezy) integration.
+
+```php
+'breezy' => [
+        '2fa' => [
+            'enabled' => false, // => change to true if you want to enable integration with Breezy 2FA
+        ]
+    ]
+```
+
+
 ## Testing
 
 ```bash

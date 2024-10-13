@@ -2,7 +2,6 @@
 
 return [
 
-
     /*
      *  Lock Screen Icon
      */
@@ -27,6 +26,12 @@ return [
     ],
 
     /* =======================================
+    *   if `enable_redirect_to` is TRUE then after login, it will be redirected to the route setup under `redirect_route`
+    */
+    'enable_redirect_to' => false,
+    'redirect_route' => 'filament.pages.dashboard',
+
+    /* =======================================
     *   RATE LIMIT
      *  change to false the `enable_rate_limit` to disable preventing user to input after several login failure.
     */
@@ -37,4 +42,17 @@ return [
     ],
 
     'activity_timeout' => 60 * 30, // 30 minutes
+
+    /**
+     *  ==============================================================
+     *  Filament Breezy
+     *  https://github.com/jeffgreco13/filament-breezy
+     *  ================================================
+     */
+    'breezy' => [
+        '2fa' => [
+            'enabled' => false,
+        ],
+    ],
+
 ];

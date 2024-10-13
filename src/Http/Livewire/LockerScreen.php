@@ -4,17 +4,20 @@ namespace lockscreen\FilamentLockscreen\Http\Livewire;
 
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
-use Filament\Facades\Filament;
+use Exception;
 use Filament\Actions\Action;
+use Filament\Exceptions\NoDefaultPanelSetException;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Pages\Actions\ActionGroup;
 use Filament\Pages\BasePage;
 use Filament\Pages\Concerns\InteractsWithFormActions;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
-use Filament\Pages\SimplePage;
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class LockerScreen extends BasePage
 {
@@ -28,19 +31,23 @@ class LockerScreen extends BasePage
 
     public ?string $password = '';
 
-    protected static string $view ='filament-lockscreen::page.auth.login' ;
+    protected static string $view = 'filament-lockscreen::page.auth.login';
 
     private ?string $account_username_field;
 
     private ?string $account_password_field;
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NoDefaultPanelSetException
+     * @throws NotFoundExceptionInterface
+     */
     public function mount()
     {
         // Check if the request is still authenticated or not before rendering the page,
         // if not authenticated then redirect to the login page of current panel, or default panel if current panel could not be detected.
 
-        if (!Filament::auth()->check())
-        {
+        if (! Filament::auth()->check()) {
             if (filament()->getCurrentPanel()) {
                 return redirect(filament()->getCurrentPanel()->getLoginUrl());
             }
@@ -49,7 +56,7 @@ class LockerScreen extends BasePage
         }
 
         session(['lockscreen' => true]);
-        if (! config('filament-lockscreen.enable_redirect_to')) {
+        if (! config('filament-lockscreen.enable_redirect_to', false)) {
             if (! session()->has('next') || session()->get('next') === null) {
                 session(['next' => url()->previous()]);
             }
@@ -69,7 +76,12 @@ class LockerScreen extends BasePage
             ->send();
     }
 
-    public function authenticate(): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws Exception
+     */
+    public function authenticate(): Redirector|RedirectResponse|Application|null
     {
         $data = $this->form->getState();
         $this->account_password_field = config('filament-lockscreen.table_columns.account_password_field');
@@ -96,8 +108,10 @@ class LockerScreen extends BasePage
                 if (config('filament-lockscreen.rate_limit.force_logout', false)) {
                     $this->forceLogout();
                     $panelId = filament()->getCurrentPanel()->getId();
+
                     return redirect()->route("filament.{$panelId}.auth.login");
                 }
+
                 return null;
             }
         }
@@ -107,6 +121,7 @@ class LockerScreen extends BasePage
             $this->account_password_field => $data['password'],
         ])) {
             $this->addError('password', __('filament-panels::pages/auth/login.messages.failed'));
+
             return null;
         }
 
@@ -114,20 +129,35 @@ class LockerScreen extends BasePage
         session()->forget('lockscreen');
         session()->forget('locker_last_activity');
         session()->regenerate();
-        if (config('filament-lockscreen.enable_redirect_to')) {
-            return redirect()->route(config('filament-lockscreen.redirect_route'));
-        }
         // store to variable
         $url = session()->get('next');
         // remove the value
         session()->forget('next');
+
+        /**
+         *  ===================== Breezy Plugin Check =================
+         */
+        if (class_exists('BreezyCore') && \filament()->hasPlugin('filament-breezy') && config('filament-lockscreen.breezy.2fa.enabled')) {
+            $twoFactorRoute = route('filament.'.filament()->getCurrentPanel()->getId().'.auth.two-factor',
+                [
+                    'next' => $url,
+                    ...[filament()->hasTenancy() ? [
+                        'tenant' => request()->route()->parameter('tenant'),
+                    ] : []],
+                ]);
+
+            return redirect($twoFactorRoute);
+        }
+        if (config('filament-lockscreen.enable_redirect_to')) {
+            return redirect()->route(config('filament-lockscreen.redirect_route'));
+        }
 
         return redirect($url);
     }
 
     protected function getFormSchema(): array
     {
-        return[
+        return [
             TextInput::make('password')
                 ->label(__('filament-lockscreen::default.fields.password'))
                 ->password()
@@ -165,9 +195,9 @@ class LockerScreen extends BasePage
             $this->getAuthenticateFormAction(),
         ];
     }
+
     protected function hasFullWidthFormActions(): bool
     {
         return true;
     }
-
 }
