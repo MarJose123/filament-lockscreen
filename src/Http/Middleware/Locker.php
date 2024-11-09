@@ -12,6 +12,7 @@ class Locker
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     * @throws \Exception
      */
     public function handle($request, Closure $next)
     {

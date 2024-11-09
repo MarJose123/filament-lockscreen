@@ -3,6 +3,7 @@
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
+use lockscreen\FilamentLockscreen\Http\LockscreenSessionController;
 
 
 Route::name('lockscreen.')
@@ -17,6 +18,8 @@ Route::name('lockscreen.')
                     ->name("{$panelId}.")
                     ->prefix($panel->getPath())
                     ->group(function () {
+                        Route::post('lock-session', [LockscreenSessionController::class, 'lockSession'])
+                            ->name('lock-session');
                         Route::get(
                             (config()->has('filament-lockscreen.url') && config('filament-lockscreen.url') !== '' && config('filament-lockscreen.url') !== '/')
                                 ? config('filament-lockscreen.url')

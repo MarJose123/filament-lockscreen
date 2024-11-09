@@ -4,6 +4,7 @@ namespace lockscreen\FilamentLockscreen\Http\Livewire;
 
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
+use Filament\Exceptions\NoDefaultPanelSetException;
 use Filament\Facades\Filament;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
@@ -15,6 +16,8 @@ use Filament\Notifications\Notification;
 use Filament\Pages\SimplePage;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class LockerScreen extends BasePage
 {
@@ -34,6 +37,11 @@ class LockerScreen extends BasePage
 
     private ?string $account_password_field;
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NoDefaultPanelSetException
+     * @throws NotFoundExceptionInterface
+     */
     public function mount()
     {
         // Check if the request is still authenticated or not before rendering the page,
@@ -48,9 +56,14 @@ class LockerScreen extends BasePage
             return redirect(filament()->getDefaultPanel()->getLoginUrl());
         }
 
-        session(['lockscreen' => true]);
+        // redirect to the filament default home url if session is not locked
+        if(!session()->has('lockscreen'))
+        {
+            return redirect(session()->has('next') ? session('next') : filament()->getDefaultPanel()->getHomeUrl() );
+        }
+
         if (! config('filament-lockscreen.enable_redirect_to')) {
-            if (! session()->has('next') || session()->get('next') === null) {
+            if (! session()->has('next') || session('next') === null) {
                 session(['next' => url()->previous()]);
             }
         }
@@ -118,7 +131,7 @@ class LockerScreen extends BasePage
             return redirect()->route(config('filament-lockscreen.redirect_route'));
         }
         // store to variable
-        $url = session()->get('next');
+        $url = session('next');
         // remove the value
         session()->forget('next');
 
@@ -138,7 +151,7 @@ class LockerScreen extends BasePage
 
     public function getTitle(): \Illuminate\Contracts\Support\Htmlable|string
     {
-        return static::$title ?? (string) str(__('filament-lockscreen::default.heading'))
+        return (string) str(__('filament-lockscreen::default.heading'))
             ->kebab()
             ->replace('-', ' ')
             ->title();
