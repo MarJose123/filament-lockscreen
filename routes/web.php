@@ -5,9 +5,8 @@ use Illuminate\Support\Facades\Route;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 use lockscreen\FilamentLockscreen\Http\LockscreenSessionController;
 
-
 Route::name('lockscreen.')
-    ->group(function (){
+    ->group(function () {
         foreach (Filament::getPanels() as $panel) {
             $panelId = $panel->getId();
             $domains = $panel->getDomains();
@@ -29,7 +28,6 @@ Route::name('lockscreen.')
                     });
 
             }
-
 
         }
     });

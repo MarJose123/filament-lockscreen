@@ -2,7 +2,4 @@
 
 namespace lockscreen\FilamentLockscreen\Http\Livewire;
 
-class LockerScreenLoginPage extends LockerScreen
-{
-
-}
+class LockerScreenLoginPage extends LockerScreen {}
