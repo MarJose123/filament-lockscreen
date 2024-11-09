@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.3 - 2024-11-09
+
+### What's Changed
+
+* 2.x user menu post action by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/64
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.2.2...v2.3
+
 ## v2.2.2 - 2024-08-22
 
 ### What's Changed
