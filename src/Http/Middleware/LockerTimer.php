@@ -15,9 +15,9 @@ class LockerTimer
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->session()->has('lockscreen')) {
+        if (! $request->session()->has('lockscreen')) {
             $lastActivity = $request->session()->get('locker_last_activity');
-            $activityTimeout =  config('filament-lockscreen.activity_timeout', 60 * 30 /* 30 minutes */);
+            $activityTimeout = config('filament-lockscreen.activity_timeout', 60 * 30 /* 30 minutes */);
 
             if ($request->method() === 'GET' && $lastActivity && (time() - $lastActivity) > $activityTimeout) {
                 $request->session()->put('lockscreen', true);

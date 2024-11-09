@@ -4,9 +4,7 @@ namespace lockscreen\FilamentLockscreen;
 
 use Filament\Contracts\Plugin;
 use Filament\Navigation\MenuItem;
-use Filament\Navigation\UserMenuItem;
 use Filament\Panel;
-use Filament\PanelProvider;
 use Livewire\Livewire;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 
@@ -16,7 +14,7 @@ class Lockscreen implements Plugin
 
     public function getId(): string
     {
-         return 'filament-lockscreen';
+        return 'filament-lockscreen';
     }
 
     public static function make(): static
@@ -29,10 +27,7 @@ class Lockscreen implements Plugin
         return filament(app(static::class)->getId());
     }
 
-    public function register(Panel $panel): void
-    {
-
-    }
+    public function register(Panel $panel): void {}
 
     public function boot(Panel $panel): void
     {
@@ -40,11 +35,10 @@ class Lockscreen implements Plugin
         $panel->userMenuItems([
             'lockscreen' => MenuItem::make()
                 ->label(fn () => __('filament-lockscreen::default.user_menu_title'))
-                ->url(route("lockscreen.{$panel->getId()}.page"))
+                ->postAction(route("lockscreen.{$panel->getId()}.lock-session"))
                 ->icon(config('filament-lockscreen.icon')),
         ]);
 
         Livewire::component('LockerScreen', LockerScreen::class);
     }
-
 }
