@@ -43,6 +43,7 @@ class LockerScreen extends BasePage
         // Check if the request is still authenticated or not before rendering the page,
         // if not authenticated then redirect to the login page of current panel, or default panel if current panel could not be detected.
 
+
         if (! Filament::auth()->check()) {
             if (filament()->getCurrentPanel()) {
                 return redirect(filament()->getCurrentPanel()->getLoginUrl());
@@ -52,8 +53,8 @@ class LockerScreen extends BasePage
         }
 
         // redirect to the filament default home url if session is not locked
-        if (! session()->has('lockscreen')) {
-            return redirect(session()->has('next') ? session('next') : filament()->getDefaultPanel()->getHomeUrl());
+        if (!session()->has('lockscreen')) {
+            return redirect(session()->has('next') ? session('next') :  filament()->getDefaultPanel()->getPath());
         }
 
         if (! config('filament-lockscreen.enable_redirect_to')) {
