@@ -5,19 +5,21 @@ namespace lockscreen\FilamentLockscreen\Http\Livewire;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Exceptions\NoDefaultPanelSetException;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions\ActionGroup;
-use Filament\Pages\BasePage;
 use Filament\Pages\Concerns\InteractsWithFormActions;
+use Filament\Pages\SimplePage;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class LockerScreen extends BasePage
+class LockerScreen extends SimplePage
 {
     use InteractsWithFormActions, WithRateLimiting;
+
+    protected bool $hasTopbar = false;
 
     protected static ?string $title = null;
 
@@ -43,7 +45,6 @@ class LockerScreen extends BasePage
         // Check if the request is still authenticated or not before rendering the page,
         // if not authenticated then redirect to the login page of current panel, or default panel if current panel could not be detected.
 
-
         if (! Filament::auth()->check()) {
             if (filament()->getCurrentPanel()) {
                 return redirect(filament()->getCurrentPanel()->getLoginUrl());
@@ -53,8 +54,8 @@ class LockerScreen extends BasePage
         }
 
         // redirect to the filament default home url if session is not locked
-        if (!session()->has('lockscreen')) {
-            return redirect(session()->has('next') ? session('next') :  filament()->getDefaultPanel()->getPath());
+        if (! session()->has('lockscreen')) {
+            return redirect(session()->has('next') ? session('next') : filament()->getDefaultPanel()->getPath());
         }
 
         if (! config('filament-lockscreen.enable_redirect_to')) {
