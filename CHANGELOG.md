@@ -2,6 +2,15 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.4 - 2025-02-01
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/MarJose123/filament-lockscreen/pull/71
+* 🛠️ Fix(filament-lockscreen): Fix duplicate html tags by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/74
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.3...v2.4
+
 ## v2.3 - 2024-11-09
 
 ### What's Changed
