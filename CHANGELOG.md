@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.5 - 2025-02-24
+
+### What's Changed
+
+* Update dependency version and remove version constraint by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/76
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.4...v2.5
+
 ## v2.4 - 2025-02-01
 
 ### What's Changed
