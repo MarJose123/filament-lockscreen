@@ -13,7 +13,7 @@
 You can install the package via composer:
 
 ```bash
-composer require marjose123/filament-lockscreen:"^2.0"
+composer require marjose123/filament-lockscreen
 ```
 
 Optionally, you can publish the views using
