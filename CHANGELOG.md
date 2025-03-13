@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.6 - 2025-03-13
+
+### What's Changed
+
+* Implement Path matching logic for preventing blocking other non-panel path request. by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/79
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.5...v2.6
+
 ## v2.5 - 2025-02-24
 
 ### What's Changed
