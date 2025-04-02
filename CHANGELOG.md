@@ -2,6 +2,18 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.6.1 - 2025-04-02
+
+### What's Changed
+
+* Support Laravel 12 by @DariusIII in https://github.com/MarJose123/filament-lockscreen/pull/80
+
+### New Contributors
+
+* @DariusIII made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/80
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.6...v2.6.1
+
 ## v2.6 - 2025-03-13
 
 ### What's Changed
