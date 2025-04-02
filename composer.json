@@ -21,7 +21,7 @@
         "danharrin/livewire-rate-limiting": "^1.0|^2.1.0",
         "filament/filament": "^v3.0",
         "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/support": "^10.0|^11.0"
+        "illuminate/support": "^10.0|^11.0|^12.0"
 
     },
     "require-dev": {
