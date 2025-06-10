@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 
 ---
-:rotating_light: _For latest version that support FilamentPhp v2.x use this branch [1.x](https://github.com/MarJose123/filament-lockscreen/tree/1.x)_
+:rotating_light: _For the latest version that supports FilamentPhp v3.x use this branch [2.x](https://github.com/MarJose123/filament-lockscreen/tree/2.x)_
 
 ## Installation
 
@@ -93,4 +93,4 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see the [License File](LICENSE.md) for more information.
