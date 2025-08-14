@@ -21,15 +21,16 @@
         "danharrin/livewire-rate-limiting": "^2.1.0",
         "filament/filament": "^4.0",
         "spatie/laravel-package-tools": "^1.13.0"
-
     },
     "require-dev": {
+        "driftingly/rector-laravel": "^2.0",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^8.1",
         "orchestra/testbench": "^9.0|^10.0",
         "pestphp/pest": "^3.7",
         "pestphp/pest-plugin-laravel": "^3.0",
-        "phpunit/phpunit": "^11.0|^12.0"
+        "phpunit/phpunit": "^11.0|^12.0",
+        "rector/rector": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -45,7 +46,9 @@
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "rector": "vendor/bin/rector process --ansi",
+        "rector:check": "vendor/bin/rector process --dry-run --ansi"
     },
     "config": {
         "sort-packages": true,
@@ -62,6 +65,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
