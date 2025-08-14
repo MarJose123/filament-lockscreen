@@ -61,7 +61,7 @@ trait HasLockscreenConfiguration
     }
 
     /**
-     * @param string $url Don't provide '/' or empty as it will conflict with the main index
+     * @param  string  $url  Don't provide '/' or empty as it will conflict with the main index
      * @return HasLockscreenConfiguration|Lockscreen
      */
     public function setUrl(string $url): self
@@ -153,11 +153,11 @@ trait HasLockscreenConfiguration
     /**
      * @return array{enable: bool, minutes: int}
      */
-    public function getIdleTimeout(): array
+    public function getIdle(): array
     {
         return [
             'enable' => $this->enableActivityTimeout,
-            'minutes' => $this->activityTimeout,
+            'minutes' => $this->activityTimeout ?? 30,
         ];
     }
 }
