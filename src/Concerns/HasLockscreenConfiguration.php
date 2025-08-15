@@ -2,11 +2,7 @@
 
 namespace lockscreen\FilamentLockscreen\Concerns;
 
-use BackedEnum;
-use Closure;
 use Filament\Support\Concerns\HasIcon;
-use Filament\Support\Icons\Heroicon;
-use Illuminate\Contracts\Support\Htmlable;
 use lockscreen\FilamentLockscreen\Lockscreen;
 use lockscreen\FilamentLockscreen\Traits\HasRateLimit;
 use lockscreen\FilamentLockscreen\Traits\HasSessionIdle;
@@ -14,8 +10,6 @@ use lockscreen\FilamentLockscreen\Traits\HasSessionLockScreenUrl;
 
 trait HasLockscreenConfiguration
 {
-    protected string|Closure|Htmlable|null|false|BackedEnum $icon = Heroicon::OutlinedLockClosed;
-
     protected string $emailColumnName = 'email';
 
     protected string $passwordColumnName = 'password';
