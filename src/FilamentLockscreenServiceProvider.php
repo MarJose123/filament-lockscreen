@@ -19,7 +19,6 @@ class FilamentLockscreenServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('filament-lockscreen')
-            ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
             ->hasRoute('web');

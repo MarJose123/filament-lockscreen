@@ -5,14 +5,12 @@ namespace lockscreen\FilamentLockscreen;
 use Filament\Actions\Action;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Filament\Support\Concerns\EvaluatesClosures;
 use Livewire\Livewire;
 use lockscreen\FilamentLockscreen\Concerns\HasLockscreenConfiguration;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 
 class Lockscreen implements Plugin
 {
-    use EvaluatesClosures;
     use HasLockscreenConfiguration;
 
     public function getId(): string
@@ -34,11 +32,13 @@ class Lockscreen implements Plugin
 
     public function boot(Panel $panel): void
     {
+        $panelId = $panel->getId();
+
         $panel->userMenuItems([
             Action::make('lockSession')
                 ->label(__('filament-lockscreen::default.user_menu_title'))
                 ->icon($this->getIcon())
-                ->url(route("lockscreen.{$panel->getId()}.lock-session"))
+                ->url(route("lockscreen.{$panelId}.lock-session"))
                 ->postToUrl(),
         ]);
 

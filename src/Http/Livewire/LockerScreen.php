@@ -12,39 +12,42 @@ use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\SimplePage;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use Filament\Support\Enums\Width;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use lockscreen\FilamentLockscreen\Lockscreen;
 
 class LockerScreen extends SimplePage
 {
-    use InteractsWithFormActions, WithRateLimiting;
+    use InteractsWithFormActions;
+    use WithRateLimiting;
 
     protected bool $hasTopbar = false;
 
     protected static ?string $title = null;
 
-    protected ?string $maxContentWidth = 'full';
+    protected string|Width|null $maxContentWidth = Width::Full;
 
     protected ?string $heading = '';
 
-    public ?string $password = '';
+    protected string $view = 'filament-lockscreen::page.auth.login';
 
-    protected static string $view = 'filament-lockscreen::page.auth.login';
-
-    private ?string $account_username_field;
-
-    private ?string $account_password_field;
 
     /**
-     * @throws ContainerExceptionInterface
+     * @return \Illuminate\Foundation\Application|RedirectResponse|Redirector|object|void
+     *
      * @throws NoDefaultPanelSetException
-     * @throws NotFoundExceptionInterface
      */
     public function mount()
     {
-        // Check if the request is still authenticated or not before rendering the page,
-        // if not authenticated then redirect to the login page of current panel, or default panel if current panel could not be detected.
-
+        /**
+         * Authentication Check
+         *
+         * Check if the request is still authenticated or not before rendering the page,
+         * if not authenticated, then redirect to the login page of the current panel, or default panel if the current panel could not be detected.
+         */
         if (! Filament::auth()->check()) {
             if (filament()->getCurrentPanel()) {
                 return redirect(filament()->getCurrentPanel()->getLoginUrl());
@@ -53,42 +56,27 @@ class LockerScreen extends SimplePage
             return redirect(filament()->getDefaultPanel()->getLoginUrl());
         }
 
-        // redirect to the filament default home url if session is not locked
+        /**
+         * Redirect to the filament default home url if the session is not locked
+         */
         if (! session()->has('lockscreen')) {
-            return redirect(session()->has('next') ? session('next') : filament()->getDefaultPanel()->getPath());
-        }
-
-        if (! config('filament-lockscreen.enable_redirect_to')) {
-            if (! session()->has('next') || session('next') === null) {
-                session(['next' => url()->previous()]);
+            if (session()->has('url.intended')) {
+                return redirect()->intended();
             }
+
+            return redirect(filament()->getDefaultPanel()->getPath());
         }
     }
 
-    protected function forceLogout(): void
-    {
-        Filament::auth()->logout();
-        session()->invalidate();
-        session()->regenerateToken();
-
-        Notification::make()
-            ->title(__('filament-lockscreen::default.notification.title'))
-            ->body(__('filament-lockscreen::default.notification.message'))
-            ->danger()
-            ->send();
-    }
-
-    public function authenticate(): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
+    public function authenticate(): Redirector|RedirectResponse|Application|null
     {
         $data = $this->form->getState();
-        $this->account_password_field = config('filament-lockscreen.table_columns.account_password_field');
-        $this->account_username_field = config('filament-lockscreen.table_columns.account_username_field');
         /*
           *  Rate Limit
           */
         if (config('filament-lockscreen.rate_limit.enable_rate_limit', true)) {
             try {
-                $this->rateLimit(config('filament-lockscreen.rate_limit.rate_limit_max_count', 5));
+                $this->rateLimit(Lockscreen::get()->getRateLimitLimit());
             } catch (TooManyRequestsException $exception) {
                 Notification::make()
                     ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
@@ -102,11 +90,11 @@ class LockerScreen extends SimplePage
                     ->danger()
                     ->send();
 
-                if (config('filament-lockscreen.rate_limit.force_logout', false)) {
+                if (Lockscreen::get()->isForceLogout()) {
                     $this->forceLogout();
                     $panelId = filament()->getCurrentPanel()->getId();
 
-                    return redirect()->route("filament.{$panelId}.auth.login");
+                    return to_route("filament.{$panelId}.auth.login");
                 }
 
                 return null;
@@ -114,8 +102,8 @@ class LockerScreen extends SimplePage
         }
 
         if (! Filament::auth()->attempt([
-            $this->account_username_field => Filament::auth()->user()->{$this->account_username_field},
-            $this->account_password_field => $data['password'],
+            Lockscreen::get()->getCustomTableColumns()[0] => Filament::auth()->user()->{Lockscreen::get()->getCustomTableColumns()[0]},
+            Lockscreen::get()->getCustomTableColumns()[1] => $data['password'],
         ])) {
             $this->addError('password', __('filament-panels::pages/auth/login.messages.failed'));
 
@@ -123,18 +111,22 @@ class LockerScreen extends SimplePage
         }
 
         // redirect to the main page and forge the lockscreen session
-        session()->forget('lockscreen');
-        session()->forget('locker_last_activity');
         session()->regenerate();
-        if (config('filament-lockscreen.enable_redirect_to')) {
-            return redirect()->route(config('filament-lockscreen.redirect_route'));
-        }
-        // store to variable
-        $url = session('next');
-        // remove the value
-        session()->forget('next');
+        session()->forget('lockscreen');
+        session()->forget('session_last_activity');
 
-        return redirect($url);
+        return redirect()->intended();
+    }
+
+    protected function forceLogout(): void
+    {
+        filament()->getCurrentPanel()->auth()->logout();
+
+        Notification::make()
+            ->title(__('filament-lockscreen::default.notification.title'))
+            ->body(__('filament-lockscreen::default.notification.message'))
+            ->danger()
+            ->send();
     }
 
     protected function getFormSchema(): array
@@ -148,7 +140,7 @@ class LockerScreen extends SimplePage
         ];
     }
 
-    public function getTitle(): \Illuminate\Contracts\Support\Htmlable|string
+    public function getTitle(): Htmlable|string
     {
         return (string) str(__('filament-lockscreen::default.heading'))
             ->kebab()
