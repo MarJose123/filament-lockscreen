@@ -29,7 +29,8 @@ class FilamentLockscreenServiceProvider extends PackageServiceProvider
      */
     public function bootingPackage(): void
     {
-        $router = $this->app->make(Router::class);
-        $router->pushMiddlewareToGroup('web', Locker::class);
+        parent::packageBooted();
+        //        $router = $this->app->make(Router::class);
+        //        $router->pushMiddlewareToGroup('web', Locker::class);
     }
 }
