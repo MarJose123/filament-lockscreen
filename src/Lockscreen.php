@@ -5,13 +5,17 @@ namespace lockscreen\FilamentLockscreen;
 use Filament\Actions\Action;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Support\Icons\Heroicon;
 use Livewire\Livewire;
 use lockscreen\FilamentLockscreen\Concerns\HasLockscreenConfiguration;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
+use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
+use lockscreen\FilamentLockscreen\Traits\HasSwitch;
 
 class Lockscreen implements Plugin
 {
     use HasLockscreenConfiguration;
+    use HasSwitch;
 
     public function getId(): string
     {
@@ -25,23 +29,34 @@ class Lockscreen implements Plugin
 
     public static function get(): static
     {
-        return filament(app(static::class)->getId());
+        /** @var static $plugin */
+        $plugin = filament(app(static::class)->getId());
+
+        return $plugin;
     }
 
-    public function register(Panel $panel): void {}
+    public function register(Panel $panel): void
+    {
+        if ($this->isPluginEnabled()) {
+            Livewire::component('LockerScreen', LockerScreen::class);
+        }
+    }
 
     public function boot(Panel $panel): void
     {
-        $panelId = $panel->getId();
+        if ($this->isPluginEnabled()) {
+            $panelId = filament()->getCurrentPanel()->getId();
 
-        $panel->userMenuItems([
-            Action::make('lockSession')
-                ->label(__('filament-lockscreen::default.user_menu_title'))
-                ->icon($this->getIcon())
-                ->url(route("lockscreen.{$panelId}.lock-session"))
-                ->postToUrl(),
-        ]);
+            $panel->authMiddleware([Locker::class], true);
 
-        Livewire::component('LockerScreen', LockerScreen::class);
+            $panel->userMenuItems([
+                Action::make('lockSession')
+                    ->label(__('filament-lockscreen::default.user_menu_title'))
+                    ->icon($this->getIcon() ?? Heroicon::OutlinedLockClosed)
+                    ->url(route("lockscreen.{$panelId}.lock-session"))
+                    ->postToUrl(),
+            ]);
+            //                    Livewire::component('LockerScreen', LockerScreen::class);
+        }
     }
 }
