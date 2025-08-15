@@ -1,6 +1,6 @@
 {
     "name": "marjose123/filament-lockscreen",
-    "description": "Give an ability to the user to lock their access without logging out of the system for a break.",
+    "description": "Give an ability to the user to lock their access session without logging out of the system for a break.",
     "type": "library",
     "keywords": [
         "MarJose123",
