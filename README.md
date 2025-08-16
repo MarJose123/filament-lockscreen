@@ -25,7 +25,12 @@ public function panel(Panel $panel): Panel
         ->plugins([
             //.......
               Lockscreen::make()
+                ->usingCustomTableColumns() // Use custom table columns.
+                ->enableRateLimit() // Enable rate limit for the lockscreen.
+                ->setUrl() // Customize the lockscreen url.
+                ->enableIdleTimeout() // Enable auto lock during idle time.
                ->disableDisplayName() // Display the name of the user based on the attribute supplied. Default: name
+               ->icon() // Customize the icon of the lockscreen.
                ->enablePlugin() // Enable the plugin.
         ]); 
 }
