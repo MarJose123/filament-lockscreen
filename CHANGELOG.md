@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.0 - 2025-08-16
+
+🎉 v3 has now been released for Filament v4.
+
+💥 Make sure to read the 📖 upgrade guide on how to upgrade from `v2.x` to `v3.x`
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.6...v3.0
+
 ## v2.6.1 - 2025-04-02
 
 ### What's Changed
