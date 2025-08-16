@@ -229,8 +229,7 @@ class LockerScreen extends SimplePage
         return $schema
             ->components([
                 $this->getFormContentComponent(),
-            ])
-            ->statePath('data');
+            ]);
     }
 
     public function getFormContentComponent(): \Filament\Schemas\Components\Component
