@@ -8,9 +8,9 @@ use Filament\Panel;
 use Filament\Support\Icons\Heroicon;
 use Livewire\Livewire;
 use lockscreen\FilamentLockscreen\Concerns\HasLockscreenConfiguration;
+use lockscreen\FilamentLockscreen\Concerns\HasSwitch;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
-use lockscreen\FilamentLockscreen\Traits\HasSwitch;
 
 class Lockscreen implements Plugin
 {
