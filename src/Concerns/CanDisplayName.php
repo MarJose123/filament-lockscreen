@@ -2,6 +2,7 @@
 
 namespace lockscreen\FilamentLockscreen\Concerns;
 
+use Closure;
 use Filament\Support\Concerns\EvaluatesClosures;
 
 trait CanDisplayName
@@ -17,7 +18,7 @@ trait CanDisplayName
         return $this->displayName;
     }
 
-    public function disableDisplayName(\Closure|bool $disable = true): static
+    public function disableDisplayName(Closure|bool $disable = true): static
     {
         $this->enableDisplayName = ! $this->evaluate($disable);
 
@@ -30,10 +31,10 @@ trait CanDisplayName
     }
 
     /**
-     * @param  \Closure|string  $attribute  The attribute of the User Model you want to display. By default, it is the 'name' attribute
+     * @param Closure|string $attribute The attribute of the User Model you want to display. By default, it is the 'name' attribute
      * @return $this
      */
-    public function displayNameUsing(\Closure|string $attribute): static
+    public function displayNameUsing(Closure|string $attribute): static
     {
         $this->displayName = $this->evaluate($attribute);
 

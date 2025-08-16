@@ -232,7 +232,7 @@ class LockerScreen extends SimplePage
             ]);
     }
 
-    public function getFormContentComponent(): \Filament\Schemas\Components\Component
+    public function getFormContentComponent(): Component
     {
         return Form::make([EmbeddedSchema::make('form')])
             ->id('form')

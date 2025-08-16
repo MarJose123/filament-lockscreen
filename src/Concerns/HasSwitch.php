@@ -2,6 +2,7 @@
 
 namespace lockscreen\FilamentLockscreen\Concerns;
 
+use Closure;
 use Filament\Support\Concerns\EvaluatesClosures;
 
 trait HasSwitch
@@ -15,7 +16,7 @@ trait HasSwitch
      *
      * @return $this
      */
-    public function enablePlugin(\Closure|bool $enable = true): static
+    public function enablePlugin(Closure|bool $enable = true): static
     {
         $enable = $this->evaluate($enable);
         $this->enablePlugin = $enable;

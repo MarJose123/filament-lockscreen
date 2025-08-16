@@ -1,5 +1,6 @@
 <?php
 
+use Filament\Facades\Filament\Panel;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
@@ -19,7 +20,7 @@ if (Lockscreen::get()->isPluginEnabled()) {
                         ->name("{$panelId}.")
                         ->prefix($panel->getPath())
                         ->group(function () use ($panel): void {
-                            /** @var \Filament\Panel $panel */
+                            /** @var Panel $panel */
                             if ($panel->hasPlugin(Lockscreen::get()->getId())) {
                                 Route::post('lock-session', [LockscreenSessionController::class, 'lockSession'])
                                     ->name('lock-session');
