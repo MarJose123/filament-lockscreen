@@ -5,42 +5,29 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 [![Total Downloads](https://img.shields.io/packagist/dt/marjose123/filament-lockscreen.svg?style=flat-square)](https://packagist.org/packages/marjose123/filament-lockscreen)
 
----
-:rotating_light: _For the latest version that supports FilamentPhp v3.x use this branch [2.x](https://github.com/MarJose123/filament-lockscreen/tree/2.x)_
-
 ## Installation
 
 You can install the package via composer:
 
-```bash
+```console
 composer require marjose123/filament-lockscreen
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-lockscreen-views"
-```
-Add the plugin to your panel and add the middleware  `Locker::class` to your panel  and you're ready to go
-```php 
 use lockscreen\FilamentLockscreen\Lockscreen;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use lockscreen\FilamentLockscreen\Http\Middleware\LockerTimer;
 
+```php
 public function panel(Panel $panel): Panel
 {
     return $panel
         // ...
-        ->plugin(new Lockscreen());  // <- Add this
-
-         ->middleware([
-              //
-              LockerTimer::class, // <- Add this (this is an optional, if you want to lock the request after 30 minutes idle)
-          ])
-         ->authMiddleware([
-                // ...
-                 Locker::class, // <- Add this
-            ]);
+        ->plugins([
+            //.......
+              Lockscreen::make()
+               ->disableDisplayName() // Display the name of the user based on the attribute supplied. Default: name
+               ->enablePlugin() // Enable the plugin.
+        ]); 
 }
 ```
 
@@ -50,13 +37,17 @@ public function panel(Panel $panel): Panel
 composer test
 ```
 
+## Upgrade Guide
+
+See [UPGRADE](docs/upgrade-from-v2-to-v3.md) from `2.x to 3.x`
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
-If you want to contribute to Filament-lockerscreen packages, you may want to test it in a real Laravel project:
+If you want to contribute to the Filament-lockerscreen package, you may want to test it in a real Laravel project:
 
 * Fork this repository to your GitHub account.
 * Create a Laravel app locally.
