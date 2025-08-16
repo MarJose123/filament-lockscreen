@@ -11,11 +11,11 @@ trait HasLockscreenConfiguration
 
     protected string $passwordColumnName = 'password';
 
+    use CanDisplayName;
     use HasIcon;
     use HasRateLimit;
     use HasSessionIdle;
     use HasSessionLockScreenUrl;
-    use CanDisplayName;
 
     /**
      * @param  string  $emailColumnName  By default, it will be using the 'email' column of the User Table
