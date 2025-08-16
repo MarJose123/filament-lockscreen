@@ -4,9 +4,6 @@ namespace lockscreen\FilamentLockscreen\Concerns;
 
 use Filament\Support\Concerns\HasIcon;
 use lockscreen\FilamentLockscreen\Lockscreen;
-use lockscreen\FilamentLockscreen\Traits\HasRateLimit;
-use lockscreen\FilamentLockscreen\Traits\HasSessionIdle;
-use lockscreen\FilamentLockscreen\Traits\HasSessionLockScreenUrl;
 
 trait HasLockscreenConfiguration
 {
@@ -18,6 +15,7 @@ trait HasLockscreenConfiguration
     use HasRateLimit;
     use HasSessionIdle;
     use HasSessionLockScreenUrl;
+    use CanDisplayName;
 
     /**
      * @param  string  $emailColumnName  By default, it will be using the 'email' column of the User Table

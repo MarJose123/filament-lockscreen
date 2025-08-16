@@ -1,6 +1,6 @@
 <?php
 
-namespace lockscreen\FilamentLockscreen\Traits;
+namespace lockscreen\FilamentLockscreen\Concerns;
 
 use Filament\Support\Concerns\EvaluatesClosures;
 

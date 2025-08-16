@@ -1,8 +1,7 @@
 <?php
 
-namespace lockscreen\FilamentLockscreen\Traits;
+namespace lockscreen\FilamentLockscreen\Concerns;
 
-use lockscreen\FilamentLockscreen\Concerns\HasLockscreenConfiguration;
 use lockscreen\FilamentLockscreen\Lockscreen;
 
 trait HasSessionLockScreenUrl
