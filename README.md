@@ -7,17 +7,19 @@
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```console
 composer require marjose123/filament-lockscreen
 ```
 
+Panel provider configuration:
+```php
 use lockscreen\FilamentLockscreen\Lockscreen;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use lockscreen\FilamentLockscreen\Http\Middleware\LockerTimer;
 
-```php
+
 public function panel(Panel $panel): Panel
 {
     return $panel
