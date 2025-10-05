@@ -57,6 +57,10 @@ class Locker
     {
         $panelPath = filament()->getCurrentPanel()?->getPath();
         $guardLockPath = Str::of($panelPath)->remove('/');
+        // the panel is using the default path '/'
+        if ($guardLockPath->isEmpty()) {
+            return $request->is([$guardLockPath, $guardLockPath->append('*/*')]);
+        }
 
         return $request->is([$guardLockPath, $guardLockPath->append('/*')]);
     }
