@@ -2,6 +2,18 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.1 - 2025-10-05
+
+### What's Changed
+
+* build(deps): bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/86
+* build(deps): bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/87
+* build(deps): bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/85
+* Update README.md by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/88
+* Fix(Middleware): Move middleware registration to panel register by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/91
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v3.0...v3.1
+
 ## v3.0 - 2025-08-16
 
 🎉 v3 has now been released for Filament v4.
