@@ -31,7 +31,7 @@ trait CanDisplayName
     }
 
     /**
-     * @param Closure|string $attribute The attribute of the User Model you want to display. By default, it is the 'name' attribute
+     * @param  Closure|string  $attribute  The attribute of the User Model you want to display. By default, it is the 'name' attribute
      * @return $this
      */
     public function displayNameUsing(Closure|string $attribute): static

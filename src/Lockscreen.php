@@ -39,6 +39,7 @@ class Lockscreen implements Plugin
     {
         if ($this->isPluginEnabled()) {
             Livewire::component('LockerScreen', LockerScreen::class);
+            $panel->authMiddleware([Locker::class], true);
         }
     }
 
@@ -47,8 +48,6 @@ class Lockscreen implements Plugin
         if ($this->isPluginEnabled()) {
             $panelId = filament()->getCurrentPanel()->getId();
 
-            $panel->authMiddleware([Locker::class], true);
-
             $panel->userMenuItems([
                 Action::make('lockSession')
                     ->label(__('filament-lockscreen::default.user_menu_title'))
@@ -56,7 +55,6 @@ class Lockscreen implements Plugin
                     ->url(route("lockscreen.{$panelId}.lock-session"))
                     ->postToUrl(),
             ]);
-            //                    Livewire::component('LockerScreen', LockerScreen::class);
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Filament\Facades\Filament\Panel;
 use Filament\Facades\Filament;
+use Filament\Facades\Filament\Panel;
 use Illuminate\Support\Facades\Route;
 use lockscreen\FilamentLockscreen\Http\Livewire\LockerScreen;
 use lockscreen\FilamentLockscreen\Http\LockscreenSessionController;
