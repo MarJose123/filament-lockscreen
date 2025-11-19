@@ -2,6 +2,19 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.2 - 2025-11-19
+
+### What's Changed
+
+* ✨ feat(Added): Add Arabic translations & fix user menu lable by @alkoumi in https://github.com/MarJose123/filament-lockscreen/pull/93
+* build(deps): bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/92
+
+### New Contributors
+
+* @alkoumi made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/93
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v3.1...v3.2
+
 ## v3.1 - 2025-10-05
 
 ### What's Changed
