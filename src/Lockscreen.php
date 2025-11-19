@@ -50,7 +50,7 @@ class Lockscreen implements Plugin
 
             $panel->userMenuItems([
                 Action::make('lockSession')
-                    ->label(__('filament-lockscreen::default.user_menu_title'))
+                    ->label(fn(): string => __('filament-lockscreen::default.user_menu_title'))
                     ->icon($this->getIcon() ?? Heroicon::OutlinedLockClosed)
                     ->url(route("lockscreen.{$panelId}.lock-session"))
                     ->postToUrl(),
