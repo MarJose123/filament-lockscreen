@@ -2,6 +2,19 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.3 - 2025-11-29
+
+### What's Changed
+
+* Add Persian language by @mohammad425 in https://github.com/MarJose123/filament-lockscreen/pull/95
+* build(deps): bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/94
+
+### New Contributors
+
+* @mohammad425 made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/95
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v3.2...v3.3
+
 ## v3.2 - 2025-11-19
 
 ### What's Changed
