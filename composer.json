@@ -19,7 +19,7 @@
     "require": {
         "php": "^8.2",
         "danharrin/livewire-rate-limiting": "^2.1.0",
-        "filament/filament": "^4.0",
+        "filament/filament": "^4.0|^5.0",
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
