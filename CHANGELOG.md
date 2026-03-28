@@ -2,6 +2,15 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.4 - 2026-03-28
+
+### What's Changed
+
+* build(deps): bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/96
+* feat(dependencies): Support Filament v5 by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/98
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v3.3...v3.4
+
 ## v3.3 - 2025-11-29
 
 ### What's Changed
