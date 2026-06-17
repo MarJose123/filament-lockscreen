@@ -2,6 +2,21 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v2.6.2 - 2026-06-17
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/81
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/82
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/83
+* Support Laravel 13 by @sudhansu08 in https://github.com/MarJose123/filament-lockscreen/pull/101
+
+### New Contributors
+
+* @sudhansu08 made their first contribution in https://github.com/MarJose123/filament-lockscreen/pull/101
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v2.6.1...v2.6.2
+
 ## v3.4 - 2026-03-28
 
 ### What's Changed
