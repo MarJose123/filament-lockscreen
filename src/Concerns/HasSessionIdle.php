@@ -6,9 +6,9 @@ use lockscreen\FilamentLockscreen\Lockscreen;
 
 trait HasSessionIdle
 {
-    protected bool $enableActivityTimeout = true;
+    protected bool $enableActivityTimeout = false;
 
-    protected int $activityTimeout;
+    protected int $activityTimeout = 1800;
 
     /**
      * @param  int  $seconds  The number of seconds of inactivity before the screen automatically locks. Defaults to 1800 (30 minutes)
@@ -41,10 +41,10 @@ trait HasSessionIdle
     }
 
     /**
-     * @return int Idle Timeout in Minutes
+     * @return int Idle Timeout in Seconds
      */
     public function getIdleTimeout(): int
     {
-        return $this->activityTimeout ?? 30;
+        return $this->activityTimeout;
     }
 }
