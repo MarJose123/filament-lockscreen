@@ -26,7 +26,7 @@ class Locker
         /**
          *  Normal Lock session
          */
-        if ($request->isMethod('GET') && $request->session()->get('lockscreen') && $this->isSegmentMatched($request)) {
+        if ($request->isMethod('GET') && ($request->session()->get('lockscreen') &&  (boolean) $request->session()->get('lockscreen') === true) && $this->isSegmentMatched($request)) {
             $panelId = filament()->getCurrentPanel()?->getId();
 
             redirect()->setIntendedUrl(url()->previous() ?? filament()->getDefaultPanel()->getPath());
@@ -45,6 +45,10 @@ class Locker
 
             if ($lastActivity && (time() - $lastActivity) > $idleTimeout) {
                 $request->session()->put('lockscreen', true);
+                $request->session()->put('session_last_activity', time());
+
+                $panelId = filament()->getCurrentPanel()?->getId();
+                return to_route("lockscreen.{$panelId}.page");
             }
 
             $request->session()->put('session_last_activity', time());

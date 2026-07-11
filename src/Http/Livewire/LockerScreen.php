@@ -109,16 +109,17 @@ class LockerScreen extends SimplePage
         }
 
         // redirect to the main page and forge the lockscreen session
-        session()->regenerate();
-        $this->purgeSession();
+
+        $this->sessionRegenerate();
 
         return redirect()->intended();
     }
 
-    protected function purgeSession(): void
+    protected function sessionRegenerate(): void
     {
-        session()->forget('lockscreen');
-        session()->forget('session_last_activity');
+        session()->regenerate();
+        session()->put('lockscreen', false);
+        session()->put('session_last_activity', time());
     }
 
     protected function getRateLimitedNotification(TooManyRequestsException $exception): ?Notification
