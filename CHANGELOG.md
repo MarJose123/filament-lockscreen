@@ -2,6 +2,16 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.4.1 - 2026-07-11
+
+### What's Changed
+
+* build(deps): bump dependabot/fetch-metadata from 2.5.0 to 3.1.0 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/100
+* build(deps): bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/MarJose123/filament-lockscreen/pull/102
+* refactor: enhance session idle management and prevent premature locking by @MarJose123 in https://github.com/MarJose123/filament-lockscreen/pull/105
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v3.4...v3.4.1
+
 ## v2.6 - 2025-03-13
 
 ### What's Changed
