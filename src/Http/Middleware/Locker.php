@@ -19,14 +19,27 @@ class Locker
      */
     public function handle(Request $request, Closure $next): mixed
     {
+        /**
+         *  Livewire requests (component updates) run this middleware through Livewire's persistent
+         *  middleware, with the method and path of the page the component lives on. They must respect
+         *  the lock too: otherwise every action on a page that is still open (another tab, the back
+         *  button) keeps working while the screen is locked, and any request can skip the lock just
+         *  by sending the "X-Livewire" header. They are not counted as user activity.
+         */
         if ($this->isLivewireRequest()) {
+            if ($this->isLocked($request) && $this->isSegmentMatched($request)) {
+                $panelId = filament()->getCurrentPanel()?->getId();
+
+                return to_route("lockscreen.{$panelId}.page");
+            }
+
             return $next($request);
         }
 
         /**
          *  Normal Lock session
          */
-        if ($request->isMethod('GET') && ($request->session()->get('lockscreen') &&  (boolean) $request->session()->get('lockscreen') === true) && $this->isSegmentMatched($request)) {
+        if ($request->isMethod('GET') && $this->isLocked($request) && $this->isSegmentMatched($request)) {
             $panelId = filament()->getCurrentPanel()?->getId();
 
             redirect()->setIntendedUrl(url()->previous() ?? filament()->getDefaultPanel()->getPath());
@@ -55,6 +68,11 @@ class Locker
         }
 
         return $next($request);
+    }
+
+    protected function isLocked(Request $request): bool
+    {
+        return (bool) $request->session()->get('lockscreen') === true;
     }
 
     protected function isSegmentMatched($request): bool
