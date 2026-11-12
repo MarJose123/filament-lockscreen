@@ -2,6 +2,14 @@
 
 All notable changes to `filament-lockscreen` will be documented in this file.
 
+## v3.5.0 - 2026-11-12
+
+### Changes
+
+- fix(lockscreen): prevent Livewire requests bypassing lockscreen
+
+**Full Changelog**: https://github.com/MarJose123/filament-lockscreen/compare/v3.4.1...v3.5.0
+
 ## v3.4.1 - 2026-07-11
 
 ### What's Changed
