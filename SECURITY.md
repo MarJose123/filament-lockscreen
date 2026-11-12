@@ -11,4 +11,4 @@
 
 ## Reporting a Vulnerability
 
-You can send drop me at hypernate@gmail.com
+You can submit a vulnerability report by creating Github Advisory.
