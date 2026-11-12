@@ -21,16 +21,30 @@ class Locker
     public function handle(Request $request, Closure $next): mixed
     {
         if ($this->isLivewireRequest()) {
+            if ($this->isLocked($request) && $this->isSegmentMatched($request)) {
+                $panelId = filament()->getCurrentPanel()?->getId();
+
+                return to_route("lockscreen.{$panelId}.page");
+            }
+
             return $next($request);
         }
 
-        if ($request->isMethod('GET') && $request->session()->get('lockscreen') && $this->isSegmentMatched($request)) {
+        /**
+         *  Normal Lock session
+         */
+        if ($request->isMethod('GET') && $this->isLocked($request) && $this->isSegmentMatched($request)) {
             $panelId = filament()->getCurrentPanel()?->getId();
 
-            return redirect()->route("lockscreen.{$panelId}.page");
-        }
+            redirect()->setIntendedUrl(url()->previous() ?? filament()->getDefaultPanel()->getPath());
 
-        return $next($request);
+            return to_route("lockscreen.{$panelId}.page");
+        }
+    }
+
+    protected function isLocked(Request $request): bool
+    {
+        return (bool) $request->session()->get('lockscreen') === true;
     }
 
     /**
